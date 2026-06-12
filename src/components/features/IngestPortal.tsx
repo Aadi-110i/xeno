@@ -26,24 +26,24 @@ export default function IngestPortal({
 }: IngestPortalProps) {
   return (
     <div className={`${styles.container} animated-fade-in`}>
-      <div className="bento-grid">
+      <div className={styles.grid}>
         {/* JSON Ingestion */}
-        <div className="glass-panel p-24" style={{ gridColumn: 'span 7' }}>
+        <div className="card p-24">
           <div className={styles.sectionHeader}>
-            <Download size={18} className="text-indigo" />
+            <Download size={16} className="text-indigo" />
             <h3>JSON Ingestion Portal</h3>
           </div>
 
           <div className={styles.presets}>
-            <button className="btn btn-secondary py-6" onClick={() => onApplyPreset('highrollers')}>High Rollers</button>
-            <button className="btn btn-secondary py-6" onClick={() => onApplyPreset('lapsed')}>Lapsed Buyers</button>
-            <button className="btn btn-secondary py-6" onClick={() => onApplyPreset('subscribers')}>Subscribers</button>
+            <button className={styles.presetBtn} onClick={() => onApplyPreset('highrollers')}>High Rollers</button>
+            <button className={styles.presetBtn} onClick={() => onApplyPreset('lapsed')}>Lapsed Buyers</button>
+            <button className={styles.presetBtn} onClick={() => onApplyPreset('subscribers')}>Subscribers</button>
           </div>
 
           <div className={styles.inputGroup}>
             <label>Raw Ingestion Payload (Batch JSON)</label>
             <textarea 
-              className={`${styles.textarea} input-field font-mono`}
+              className={styles.textarea}
               value={json}
               onChange={(e) => setJson(e.target.value)}
               placeholder='{ "customers": [...] }'
@@ -60,9 +60,9 @@ export default function IngestPortal({
         </div>
 
         {/* Database Management */}
-        <div className="glass-panel p-24" style={{ gridColumn: 'span 5' }}>
+        <div className="card p-24">
           <div className={styles.sectionHeader}>
-            <Database size={18} className="text-indigo" />
+            <Database size={16} className="text-indigo" />
             <h3>State Management</h3>
           </div>
 
@@ -81,10 +81,10 @@ export default function IngestPortal({
           {result && (
             <div className={styles.resultBox}>
               <div className={styles.resultHeader}>
-                <CheckCircle2 size={12} className="text-green" />
+                <CheckCircle2 size={12} className="text-indigo" />
                 <span>Execution Result</span>
               </div>
-              <pre>{result}</pre>
+              <pre className={styles.resultContent}>{result}</pre>
             </div>
           )}
         </div>

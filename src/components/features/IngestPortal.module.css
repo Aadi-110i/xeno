@@ -1,3 +1,9 @@
+.grid {
+  display: grid;
+  grid-template-columns: 1.4fr 1fr;
+  gap: 24px;
+}
+
 .sectionHeader {
   display: flex;
   align-items: center;
@@ -6,14 +12,34 @@
 }
 
 .sectionHeader h3 {
-  font-size: 18px;
+  font-size: 14px;
+  font-weight: 600;
   margin: 0;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--color-secondary);
 }
 
 .presets {
   display: flex;
-  gap: 10px;
+  gap: 8px;
   margin-bottom: 20px;
+}
+
+.presetBtn {
+  background: var(--bg-surface-hover);
+  border: 1px solid var(--border-subtle);
+  border-radius: 4px;
+  padding: 4px 10px;
+  font-size: 11px;
+  color: var(--color-secondary);
+  cursor: pointer;
+  transition: var(--transition-fast);
+}
+
+.presetBtn:hover {
+  border-color: var(--border-muted);
+  color: var(--color-primary);
 }
 
 .inputGroup {
@@ -24,14 +50,28 @@
 }
 
 .inputGroup label {
-  font-size: 12px;
+  font-size: 11px;
   font-weight: 600;
-  color: var(--color-secondary);
+  color: var(--color-tertiary);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
 }
 
 .textarea {
   height: 250px;
+  background: var(--bg-deep);
+  border: 1px solid var(--border-subtle);
+  border-radius: 6px;
+  padding: 12px;
+  color: var(--color-primary);
   font-size: 12px;
+  font-family: var(--font-mono);
+  outline: none;
+  resize: vertical;
+}
+
+.textarea:focus {
+  border-color: var(--accent-indigo);
 }
 
 .helpText {
@@ -42,9 +82,9 @@
 }
 
 .resultBox {
-  background: #000;
-  border: 1px solid var(--border-glass);
-  border-radius: 12px;
+  background: var(--bg-surface-hover);
+  border: 1px solid var(--border-subtle);
+  border-radius: 8px;
   padding: 16px;
   margin-top: 16px;
 }
@@ -53,17 +93,23 @@
   display: flex;
   align-items: center;
   gap: 8px;
-  font-size: 11px;
-  font-weight: 700;
+  font-size: 10px;
+  font-weight: 600;
   text-transform: uppercase;
-  color: var(--color-tertiary);
+  color: var(--color-muted);
   margin-bottom: 12px;
 }
 
-.resultBox pre {
+.resultContent {
   font-family: var(--font-mono);
   font-size: 11px;
-  color: var(--color-secondary);
+  color: var(--color-tertiary);
   overflow-x: auto;
-  max-height: 200px;
+  max-height: 180px;
+}
+
+@media (max-width: 1024px) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
 }

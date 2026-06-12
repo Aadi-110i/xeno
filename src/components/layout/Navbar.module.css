@@ -1,0 +1,129 @@
+.navbar {
+  position: sticky;
+  top: 0;
+  width: 100%;
+  height: 64px;
+  background: var(--bg-surface);
+  border-bottom: 1px solid var(--border-subtle);
+  z-index: 100;
+  display: flex;
+  align-items: center;
+}
+
+.navContainer {
+  max-width: 1200px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 0 24px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logoGroup {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.logoIcon {
+  color: var(--accent-indigo);
+}
+
+.logoText {
+  font-family: var(--font-sans);
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  font-size: 1.25rem;
+  color: var(--color-primary);
+}
+
+.navLinks {
+  display: flex;
+  gap: 32px;
+}
+
+.navLink {
+  color: var(--color-secondary);
+  text-decoration: none;
+  font-size: 0.875rem;
+  font-weight: 500;
+  transition: var(--transition-fast);
+}
+
+.navLink:hover {
+  color: var(--color-primary);
+}
+
+.authGroup {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.loginBtn {
+  color: var(--color-secondary);
+  text-decoration: none;
+  font-size: 0.875rem;
+  font-weight: 500;
+  transition: var(--transition-fast);
+}
+
+.loginBtn:hover {
+  color: var(--color-primary);
+}
+
+.signupBtn {
+  background: var(--accent-indigo);
+  color: white;
+  padding: 8px 16px;
+  border-radius: 6px;
+  text-decoration: none;
+  font-size: 0.875rem;
+  font-weight: 500;
+  transition: var(--transition-fast);
+}
+
+.signupBtn:hover {
+  background: var(--accent-indigo-light);
+}
+
+.userProfile {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.welcomeText {
+  color: var(--color-secondary);
+  font-size: 0.875rem;
+  font-weight: 400;
+}
+
+.userName {
+  color: var(--color-primary);
+  font-weight: 600;
+}
+
+.consoleBtn {
+  background: var(--bg-main);
+  border: 1px solid var(--border-subtle);
+  color: var(--color-primary);
+  padding: 8px 16px;
+  border-radius: 8px;
+  font-size: 0.875rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.consoleBtn:hover {
+  background: var(--bg-surface-hover);
+  border-color: var(--accent-indigo);
+}
+
+@media (max-width: 768px) {
+  .navLinks {
+    display: none;
+  }
+}

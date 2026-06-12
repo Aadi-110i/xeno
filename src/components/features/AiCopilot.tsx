@@ -38,7 +38,7 @@ export default function AiCopilot({
           {chatHistory.map((chat, idx) => (
             <div key={idx} className={`${styles.bubbleWrapper} ${chat.role === 'user' ? styles.userWrapper : styles.modelWrapper}`}>
               <div className={styles.avatar}>
-                {chat.role === 'user' ? <MessageSquare size={14} /> : <Sparkles size={14} />}
+                {chat.role === 'user' ? <MessageSquare size={12} /> : <Sparkles size={12} />}
               </div>
               
               <div className={styles.bubble}>
@@ -57,7 +57,7 @@ export default function AiCopilot({
                       }
                     </p>
                     <button className="btn btn-primary w-full py-6" style={{ fontSize: '12px' }} onClick={() => onExecuteAction(chat.action)}>
-                      Execute Optimized Strategy
+                      Execute Strategy
                     </button>
                   </div>
                 )}
@@ -67,8 +67,10 @@ export default function AiCopilot({
           {sending && (
             <div className={`${styles.bubbleWrapper} ${styles.modelWrapper}`}>
               <div className={styles.avatar}><Cpu size={14} className={styles.spin} /></div>
-              <div className={styles.loadingBubble}>
-                AI Agent is orchestrating a response...
+              <div className={styles.bubble}>
+                <div className={styles.loadingBubble}>
+                  Gemini is orchestrating a response...
+                </div>
               </div>
             </div>
           )}
@@ -91,10 +93,10 @@ export default function AiCopilot({
             onClick={onSend}
             disabled={sending || !chatInput.trim()}
           >
-            <Send size={18} />
+            <Send size={16} />
           </button>
         </div>
-        <p className={styles.footerHint}>Press Enter to transmit query node to Xeno Brain</p>
+        <p className={styles.footerHint}>Press Enter to transmit query</p>
       </div>
     </div>
   );

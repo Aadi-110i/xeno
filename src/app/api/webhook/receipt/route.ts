@@ -112,7 +112,7 @@ export async function POST(req: Request) {
 
     return NextResponse.json({ success: true, updatedLog: result });
   } catch (err: any) {
-    console.error(`[CRM Webhook Error] logId=${logId}, status=${status}:`, err.message);
+    console.error(`[CRM Webhook Error]:`, err.message);
     return NextResponse.json({ error: err.message || 'Internal server error' }, { status: 500 });
   }
 }

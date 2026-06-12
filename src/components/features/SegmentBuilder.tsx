@@ -32,6 +32,8 @@ interface SegmentBuilderProps {
   sqlPreview: string;
   segmentName: string;
   setSegmentName: (val: string) => void;
+  segmentDesc: string;
+  setSegmentDesc: (val: string) => void;
   onSaveVisual: () => void;
   
   aiPrompt: string;
@@ -41,6 +43,8 @@ interface SegmentBuilderProps {
   aiGeneratedRules: any;
   newAiName: string;
   setNewAiName: (val: string) => void;
+  newAiDesc: string;
+  setNewAiDesc: (val: string) => void;
   onSaveAi: () => void;
 
   segments: Segment[];
@@ -58,6 +62,8 @@ export default function SegmentBuilder({
   sqlPreview,
   segmentName,
   setSegmentName,
+  segmentDesc,
+  setSegmentDesc,
   onSaveVisual,
   aiPrompt,
   setAiPrompt,
@@ -66,6 +72,8 @@ export default function SegmentBuilder({
   aiGeneratedRules,
   newAiName,
   setNewAiName,
+  newAiDesc,
+  setNewAiDesc,
   onSaveAi,
   segments,
   selectedId,
@@ -75,22 +83,21 @@ export default function SegmentBuilder({
 }: SegmentBuilderProps) {
   return (
     <div className={`${styles.container} animated-fade-in`}>
-      <div className="bento-grid">
+      <div className={styles.topGrid}>
         {/* Visual Rule Builder */}
-        <div className="glass-panel p-24" style={{ gridColumn: 'span 7' }}>
+        <div className={styles.premiumCard}>
           <div className={styles.sectionHeader}>
             <div className={styles.headerTitle}>
-              <Layers size={18} className="text-indigo" />
+              <Layers size={16} className="text-indigo" />
               <h3>Visual Rule Orchestrator</h3>
             </div>
-            <span className={styles.helperText}>Structured query builder</span>
           </div>
 
           <div className={styles.ruleList}>
             {visualRules.map((rule, idx) => (
               <div key={idx} className={styles.ruleRow}>
                 <select 
-                  className="select-field"
+                  className={styles.select}
                   value={rule.field}
                   onChange={(e) => onRuleChange(idx, 'field', e.target.value)}
                 >
@@ -102,7 +109,7 @@ export default function SegmentBuilder({
                 </select>
 
                 <select 
-                  className="select-field"
+                  className={styles.select}
                   value={rule.operator}
                   onChange={(e) => onRuleChange(idx, 'operator', e.target.value)}
                 >
@@ -114,7 +121,7 @@ export default function SegmentBuilder({
 
                 <input 
                   type="text"
-                  className="input-field"
+                  className={styles.input}
                   value={rule.value}
                   onChange={(e) => onRuleChange(idx, 'value', e.target.value)}
                   placeholder="Value"
@@ -125,13 +132,13 @@ export default function SegmentBuilder({
                   onClick={() => onRemoveRule(idx)}
                   disabled={visualRules.length === 1}
                 >
-                  <Trash2 size={16} />
+                  <Trash2 size={14} />
                 </button>
               </div>
             ))}
           </div>
 
-          <button className="btn btn-secondary py-8 mb-24" onClick={onAddRule}>
+          <button className="btn btn-secondary py-4 mb-24" onClick={onAddRule} style={{ fontSize: '12px' }}>
             <Plus size={14} /> Add Rule Logic
           </button>
 
@@ -145,7 +152,7 @@ export default function SegmentBuilder({
               <label>Cohort Identity</label>
               <input 
                 type="text"
-                className="input-field"
+                className={styles.input}
                 value={segmentName}
                 onChange={(e) => setSegmentName(e.target.value)}
                 placeholder="e.g. High Value Shoppers"
@@ -158,10 +165,10 @@ export default function SegmentBuilder({
         </div>
 
         {/* AI Cohort Parser */}
-        <div className="glass-panel p-24" style={{ gridColumn: 'span 5' }}>
+        <div className={styles.premiumCard}>
           <div className={styles.sectionHeader}>
             <div className={styles.headerTitle}>
-              <Sparkles size={18} className="text-indigo" />
+              <Sparkles size={16} className="text-indigo" />
               <h3>AI Natural Language Parser</h3>
             </div>
           </div>
@@ -169,7 +176,7 @@ export default function SegmentBuilder({
           <p className={styles.aiHelp}>Describe your audience in plain English. Gemini will compile the query logic.</p>
 
           <textarea 
-            className={`${styles.aiTextarea} input-field`}
+            className={styles.aiTextarea}
             placeholder="e.g. Target users who spent more than $200 and shopped in the last 30 days..."
             value={aiPrompt}
             onChange={(e) => setAiPrompt(e.target.value)}
@@ -184,21 +191,21 @@ export default function SegmentBuilder({
           </button>
 
           {aiGeneratedRules && (
-            <div className={`${styles.aiResult} animated-fade-in`}>
+            <div className={styles.aiResult}>
               <div className={styles.resultHeader}>
-                <span>Proposed Cohort Spec</span>
-                <span className="badge badge-completed">{aiGeneratedRules.size} Matches</span>
+                <span>Proposed Spec</span>
+                <span className={styles.matchBadge}>{aiGeneratedRules.size} Matches</span>
               </div>
               
               <div className={styles.aiFields}>
                 <input 
                   type="text"
-                  className="input-field"
+                  className={styles.input}
                   value={newAiName}
                   onChange={(e) => setNewAiName(e.target.value)}
                   placeholder="Segment Name"
                 />
-                <button className="btn btn-primary btn-sm" onClick={onSaveAi}>
+                <button className="btn btn-primary w-full" onClick={onSaveAi} style={{ fontSize: '12px', padding: '6px' }}>
                   Save AI Segment
                 </button>
               </div>
@@ -207,8 +214,8 @@ export default function SegmentBuilder({
         </div>
       </div>
 
-      {/* Segments Library & Preview */}
-      <div className="glass-panel p-24 mt-24">
+      {/* Library */}
+      <div className={`${styles.premiumCard} mt-24`}>
         <h3 className={styles.libraryTitle}>Saved Segments Library</h3>
         <div className={styles.chipCloud}>
           {segments.map((seg) => (
@@ -223,7 +230,7 @@ export default function SegmentBuilder({
         </div>
 
         {selectedId && (
-          <div className={`${styles.previewSection} animated-fade-in`}>
+          <div className={styles.previewSection}>
             <div className={styles.previewHeader}>
               <span>Matched Identity Preview ({matchedCustomers.length})</span>
             </div>
@@ -234,7 +241,7 @@ export default function SegmentBuilder({
                 {matchedCustomers.slice(0, 8).map(sc => (
                   <div key={sc.id} className={styles.previewItem}>
                     <span>{sc.firstName} {sc.lastName}</span>
-                    <span className="text-green font-mono">${sc.totalSpent.toFixed(2)}</span>
+                    <span className="text-indigo font-mono">${sc.totalSpent.toFixed(0)}</span>
                   </div>
                 ))}
                 {matchedCustomers.length > 8 && <div className={styles.moreIndicator}>+ {matchedCustomers.length - 8} more identities</div>}

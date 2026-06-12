@@ -47,7 +47,7 @@ export default function CustomerDatabase({
     <div className="animated-fade-in">
       <div className={styles.tableToolbar}>
         <div className={styles.searchContainer}>
-          <Search size={16} className={styles.searchIcon} />
+          <Search size={14} className={styles.searchIcon} />
           <input 
             type="text"
             className={styles.searchInput}
@@ -58,7 +58,7 @@ export default function CustomerDatabase({
         </div>
 
         <select 
-          className="select-field"
+          className={styles.select}
           value={sortOption}
           onChange={(e) => setSortOption(e.target.value)}
         >
@@ -74,9 +74,9 @@ export default function CustomerDatabase({
             <tr>
               <th>Identity</th>
               <th>Contact Node</th>
-              <th>Accumulated Value</th>
-              <th>Engagement Status</th>
-              <th>Action</th>
+              <th>Value</th>
+              <th>Status</th>
+              <th></th>
             </tr>
           </thead>
           <tbody>
@@ -103,15 +103,15 @@ export default function CustomerDatabase({
                   </td>
                   <td>
                     <div className={styles.valueCell}>
-                      <span className={styles.amount}>${cust.totalSpent.toFixed(2)}</span>
+                      <span className={styles.amount}>${cust.totalSpent.toFixed(0)}</span>
                     </div>
                   </td>
                   <td>
-                    <span className="badge badge-completed">Verified</span>
+                    <span className={styles.statusBadge}>Verified</span>
                   </td>
-                  <td>
+                  <td className={styles.actionCell}>
                     <button className={styles.actionBtn} onClick={() => onViewDetails(cust)}>
-                      <ExternalLink size={14} /> Profile
+                      Profile
                     </button>
                   </td>
                 </tr>
@@ -146,7 +146,7 @@ export function CustomerModal({
             <span className={styles.modalId}>System Identity: {customer.id}</span>
           </div>
           <button className={styles.closeBtn} onClick={onClose}>
-            <X size={20} />
+            <X size={18} />
           </button>
         </div>
 
@@ -157,14 +157,14 @@ export function CustomerModal({
             <div className={styles.detailsGrid}>
               {/* Summary Cards */}
               <div className={styles.summaryRow}>
-                <div className="glass-panel p-16">
+                <div className={styles.summaryCard}>
                   <label className={styles.cardLabel}>Contact Matrix</label>
                   <div className={styles.cardValue}>{customer.email}</div>
                   <div className={styles.cardSubValue}>{customer.phone}</div>
                 </div>
-                <div className="glass-panel p-16">
+                <div className={styles.summaryCard}>
                   <label className={styles.cardLabel}>Lifetime Attribution</label>
-                  <div className={`${styles.cardValue} text-green`}>${customer.totalSpent.toFixed(2)}</div>
+                  <div className={`${styles.cardValue} text-indigo`}>${customer.totalSpent.toFixed(2)}</div>
                   <div className={styles.cardSubValue}>Joined {new Date(customer.createdAt).toLocaleDateString()}</div>
                 </div>
               </div>
@@ -186,7 +186,7 @@ export function CustomerModal({
                         <tr key={ord.id}>
                           <td>#{ord.id.slice(-6).toUpperCase()}</td>
                           <td>{new Date(ord.purchaseDate).toLocaleDateString()}</td>
-                          <td className="text-green font-mono">${ord.amount.toFixed(2)}</td>
+                          <td className="text-indigo font-mono">${ord.amount.toFixed(2)}</td>
                         </tr>
                       ))}
                       {(!history?.orders || history.orders.length === 0) && (
@@ -214,11 +214,11 @@ export function CustomerModal({
                       {history?.commLogs?.map((log: any) => (
                         <tr key={log.id}>
                           <td style={{ fontWeight: 600 }}>{log.campaign?.name}</td>
-                          <td className="uppercase text-blue" style={{ fontSize: '10px', fontWeight: 800 }}>{log.channel}</td>
-                          <td><span className={`badge badge-${log.status}`}>{log.status}</span></td>
+                          <td className={styles.channelBadge}>{log.channel}</td>
+                          <td><span className={styles.statusBadgeSmall}>{log.status}</span></td>
                           <td className={styles.timeLogs}>
                             {log.sentAt && <div>TX: {new Date(log.sentAt).toLocaleTimeString()}</div>}
-                            {log.convertedAt && <div className="text-green">CV: {new Date(log.convertedAt).toLocaleTimeString()}</div>}
+                            {log.convertedAt && <div className="text-indigo">CV: {new Date(log.convertedAt).toLocaleTimeString()}</div>}
                           </td>
                         </tr>
                       ))}

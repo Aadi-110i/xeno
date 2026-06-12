@@ -317,10 +317,10 @@ Would you like to load this into the campaign composer?`;
     // Parse actions if any
     let reply = text;
     let action: any = null;
-    const match = text.match(/:::ACTION:::(.*?):::END:::/s);
-    
+    const match = text.match(/:::ACTION:::([\s\S]*?):::END:::/);
+
     if (match) {
-      reply = text.replace(/:::ACTION:::.*?:::END:::/gs, '').trim();
+      reply = text.replace(/:::ACTION:::[\s\S]*?:::END:::/g, '').trim();
       try {
         action = JSON.parse(match[1].trim());
       } catch (e) {

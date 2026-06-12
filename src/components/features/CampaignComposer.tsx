@@ -62,7 +62,7 @@ export default function CampaignComposer({
   return (
     <div className={`${styles.composerGrid} animated-fade-in`}>
       {/* Wizard Panel */}
-      <div className={styles.wizardCard}>
+      <div className="card overflow-hidden">
         <div className={styles.wizardSteps}>
           {[1, 2, 3].map(i => (
             <div key={i} className={`${styles.wizardStep} ${step >= i ? styles.activeStep : ''}`}>
@@ -75,12 +75,12 @@ export default function CampaignComposer({
 
         <div className={styles.wizardForm}>
           {step === 1 && (
-            <div className="flex flex-col gap-16 animated-fade-in">
+            <div className={styles.formContent}>
               <div className={styles.formGroup}>
                 <label>Campaign Name</label>
                 <input 
                   type="text" 
-                  className="input-field" 
+                  className={styles.input} 
                   placeholder="e.g. Q4 Loyalty Boost"
                   value={name}
                   onChange={(e) => setName(e.target.value)}
@@ -101,7 +101,7 @@ export default function CampaignComposer({
                       className={`${styles.channelBtn} ${channel === ch.id ? styles.activeChannel : ''}`}
                       onClick={() => setChannel(ch.id as any)}
                     >
-                      <ch.icon size={18} />
+                      <ch.icon size={16} />
                       <span>{ch.label}</span>
                     </button>
                   ))}
@@ -111,7 +111,7 @@ export default function CampaignComposer({
               <div className={styles.formGroup}>
                 <label>Audience Cohort</label>
                 <select 
-                  className="select-field"
+                  className={styles.select}
                   value={segmentId}
                   onChange={(e) => setSegmentId(e.target.value)}
                 >
@@ -123,17 +123,17 @@ export default function CampaignComposer({
               </div>
 
               <button 
-                className="btn btn-primary mt-8" 
+                className="btn btn-primary mt-16" 
                 disabled={!name || !segmentId}
                 onClick={() => setStep(2)}
               >
-                Continue to Content <ArrowRight size={16} />
+                Continue to Content <ArrowRight size={14} />
               </button>
             </div>
           )}
 
           {step === 2 && (
-            <div className="flex flex-col gap-16 animated-fade-in">
+            <div className={styles.formContent}>
               <div className={styles.aiCopyBox}>
                 <div className={styles.aiHeader}>
                   <Sparkles size={14} className="text-indigo" />
@@ -142,8 +142,8 @@ export default function CampaignComposer({
                 <div className={styles.aiInputRow}>
                   <input 
                     type="text" 
-                    className="input-field" 
-                    placeholder="e.g. Write a friendly promo for high-spenders..." 
+                    className={styles.input} 
+                    placeholder="e.g. Write a friendly promo..." 
                     value={aiObjective}
                     onChange={(e) => setAiObjective(e.target.value)}
                   />
@@ -160,29 +160,29 @@ export default function CampaignComposer({
               <div className={styles.formGroup}>
                 <label>Message Template</label>
                 <textarea 
-                  className={`${styles.templateArea} input-field`}
+                  className={styles.templateArea}
                   placeholder="Hello [Name], we noticed you liked [Category]..."
                   value={template}
                   onChange={(e) => setTemplate(e.target.value)}
                 />
-                <span className={styles.varsHint}>Vars: [Name] (Identity), [Spent] (Lifetime Value)</span>
+                <span className={styles.varsHint}>Vars: [Name], [Spent]</span>
               </div>
 
-              <div className="flex gap-12">
+              <div className={styles.btnRow}>
                 <button className="btn btn-secondary flex-1" onClick={() => setStep(1)}>Back</button>
                 <button 
                   className="btn btn-primary flex-1" 
                   disabled={!template}
                   onClick={() => setStep(3)}
                 >
-                  Review Summary <ArrowRight size={16} />
+                  Review Summary <ArrowRight size={14} />
                 </button>
               </div>
             </div>
           )}
 
           {step === 3 && (
-            <div className="flex flex-col gap-16 animated-fade-in">
+            <div className={styles.formContent}>
               <div className={styles.reviewCard}>
                 <h4 className={styles.reviewTitle}>Execution Manifest</h4>
                 <div className={styles.reviewGrid}>
@@ -192,7 +192,7 @@ export default function CampaignComposer({
                   </div>
                   <div className={styles.reviewItem}>
                     <label>Channel</label>
-                    <span className="uppercase text-blue">{channel}</span>
+                    <span className={styles.channelLabel}>{channel}</span>
                   </div>
                   <div className={styles.reviewItem}>
                     <label>Target Audience</label>
@@ -201,7 +201,7 @@ export default function CampaignComposer({
                 </div>
               </div>
 
-              <div className="flex gap-12">
+              <div className={styles.btnRow}>
                 <button className="btn btn-secondary flex-1" onClick={() => setStep(2)}>Back</button>
                 <button className="btn btn-primary flex-1" onClick={onCreate}>
                   Dispatch Campaign <Play size={14} />
@@ -215,7 +215,7 @@ export default function CampaignComposer({
       {/* Simulator Panel */}
       <div className={styles.simulatorPanel}>
         <div className={styles.simulatorTitle}>
-          <Smartphone size={16} className={styles.muted} />
+          <Smartphone size={14} />
           <span>Real-time Deliverability Simulator</span>
         </div>
         

@@ -1,5 +1,6 @@
 'use client';
 
+import { motion } from 'motion/react';
 import { 
   Target, 
   Activity, 
@@ -71,57 +72,71 @@ export default function TelemetryDashboard({
   const conversionRate = totalOpened > 0 ? (totalConverted / totalOpened) * 100 : 0;
 
   return (
-    <div className="animated-fade-in">
-      {/* KPI Section - Bento Grid */}
-      <div className="bento-grid mb-24">
-        <div className={`${styles.kpiCard} glass-panel`} style={{ gridColumn: 'span 4' }}>
+    <motion.div 
+      initial={{ opacity: 0, y: 10 }}
+      animate={{ opacity: 1, y: 0 }}
+      className={styles.dashboard}
+    >
+      {/* KPI Section */}
+      <div className={styles.kpiGrid}>
+        <div className={styles.kpiCard}>
           <div className={styles.kpiHeader}>
-            <span>Campaign Deployments</span>
-            <Target size={16} className={styles.muted} />
+            <span>Orchestrations</span>
+            <Target size={14} />
           </div>
-          <div className="stat-number">{totalCampaigns}</div>
-          <div className={styles.kpiFooter}>{completedCampaigns} finalized batches</div>
+          <div className={styles.kpiValue}>{totalCampaigns}</div>
+          <div className={styles.kpiFooter}>
+            <TrendingUp size={12} /> {completedCampaigns} finalized batches
+          </div>
         </div>
         
-        <div className={`${styles.kpiCard} glass-panel`} style={{ gridColumn: 'span 4' }}>
+        <div className={styles.kpiCard}>
           <div className={styles.kpiHeader}>
-            <span>Delivery Health</span>
-            <Activity size={16} className={styles.muted} />
+            <span>Node Health</span>
+            <Activity size={14} />
           </div>
-          <div className="stat-number">{deliveryRate.toFixed(1)}%</div>
-          <div className={styles.kpiFooter}>{totalDelivered} messages delivered</div>
+          <div className={styles.kpiValue}>{deliveryRate.toFixed(1)}%</div>
+          <div className={styles.kpiFooter}>
+            <TrendingUp size={12} /> {totalDelivered} delivered signals
+          </div>
         </div>
 
-        <div className={`${styles.kpiCard} glass-panel`} style={{ gridColumn: 'span 4' }}>
+        <div className={styles.kpiCard}>
           <div className={styles.kpiHeader}>
-            <span>Attributed Revenue</span>
-            <TrendingUp size={16} className={styles.green} />
+            <span>Attributed ROI</span>
+            <TrendingUp size={14} />
           </div>
-          <div className="stat-number text-green">${totalRevenue.toLocaleString()}</div>
-          <div className={styles.kpiFooter}>{totalConverted} conversions ({(conversionRate).toFixed(1)}% rate)</div>
+          <div className={styles.kpiValue}>${totalRevenue.toLocaleString()}</div>
+          <div className={styles.kpiFooter}>
+            <TrendingUp size={12} /> {totalConverted} conversions ({(conversionRate).toFixed(1)}%)
+          </div>
         </div>
       </div>
 
-      {/* Main Insights - Bento Grid */}
-      <div className="bento-grid mb-24">
-        <div className="glass-panel p-24" style={{ gridColumn: 'span 7' }}>
+      {/* Main Insights */}
+      <div className={styles.insightsGrid}>
+        <div className={styles.kpiCard}>
           <CampaignChart campaigns={campaigns} />
         </div>
-        <div className="glass-panel p-24" style={{ gridColumn: 'span 5' }}>
+        <div className={styles.kpiCard}>
           <ConversionsBarChart campaigns={campaigns} />
         </div>
       </div>
 
       {/* Active Monitor & Logs */}
-      <div className="bento-grid">
+      <div className={styles.bottomGrid}>
         {/* Active Dispatch */}
-        <div style={{ gridColumn: 'span 7' }} className="flex flex-col gap-16">
+        <div className={styles.leftCol}>
           {runningCampaignId && runningCampaignStats && (
-            <div className={`${styles.activeMonitor} glass-panel p-20 animated-fade-in`}>
+            <motion.div 
+              className={styles.activeMonitor}
+              initial={{ opacity: 0, scale: 0.95 }}
+              animate={{ opacity: 1, scale: 1 }}
+            >
               <div className={styles.monitorHeader}>
                 <div className={styles.monitorTitle}>
                   <div className={styles.pulseDot} />
-                  <span>Staggered Dispatch Monitor</span>
+                  <span>Real-time Dispatch Stream</span>
                 </div>
                 <div className={styles.monitorProgress}>
                   {runningCampaignStats.delivered + runningCampaignStats.failed} / {runningCampaignStats.total}
@@ -129,48 +144,52 @@ export default function TelemetryDashboard({
               </div>
               
               <div className={styles.progressBar}>
-                <div 
+                <motion.div 
                   className={styles.progressFill}
-                  style={{ width: `${((runningCampaignStats.delivered + runningCampaignStats.failed) / runningCampaignStats.total) * 100}%` }}
+                  initial={{ width: 0 }}
+                  animate={{ width: `${((runningCampaignStats.delivered + runningCampaignStats.failed) / runningCampaignStats.total) * 100}%` }}
                 />
               </div>
 
               <div className={styles.monitorStats}>
                 <div className={styles.subStat}>
-                  <label>Delivered</label>
+                  <label>DELIVERED</label>
                   <span>{runningCampaignStats.delivered}</span>
                 </div>
                 <div className={styles.subStat}>
-                  <label>Opened</label>
+                  <label>OPENED</label>
                   <span>{runningCampaignStats.opened}</span>
                 </div>
                 <div className={styles.subStat}>
-                  <label>Conversions</label>
+                  <label>CONVERTED</label>
                   <span>{runningCampaignStats.converted}</span>
                 </div>
                 <div className={styles.subStat}>
-                  <label>Revenue</label>
-                  <span className="text-green">${runningCampaignStats.revenue.toFixed(0)}</span>
+                  <label>REVENUE</label>
+                  <span style={{ color: '#818cf8' }}>${runningCampaignStats.revenue.toFixed(0)}</span>
                 </div>
               </div>
-            </div>
+            </motion.div>
           )}
 
-          <div className="glass-panel p-24">
+          <div className={styles.kpiCard}>
             <div className={styles.sectionHeader}>
-              <h3>Campaign Workspace Logs</h3>
-              <button className="btn btn-secondary py-4 px-8" style={{ fontSize: '11px' }}>View All</button>
+              <h3>Execution History</h3>
+              <button className={styles.tinyBtn}>Full Index</button>
             </div>
             
             <div className={styles.logList}>
               {campaigns.length === 0 ? (
-                <div className={styles.emptyState}>No campaigns found. Launch one in Campaign Orchestrator!</div>
+                <div className={styles.emptyState}>Initialize an orchestration node to begin tracking.</div>
               ) : (
-                campaigns.slice(0, 5).map((camp) => (
-                  <div 
+                campaigns.slice(0, 5).map((camp, i) => (
+                  <motion.div 
                     key={camp.id} 
                     className={styles.logItem}
                     onClick={() => onSelectCampaign(camp.id)}
+                    initial={{ opacity: 0, x: -10 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ delay: i * 0.05 }}
                   >
                     <div className={styles.logMain}>
                       <span className={styles.logName}>{camp.name}</span>
@@ -179,19 +198,19 @@ export default function TelemetryDashboard({
                         <span>•</span>
                         <span>{camp.segment?.name || 'All Shoppers'}</span>
                         <span>•</span>
-                        <span className={`badge badge-${camp.status}`}>{camp.status}</span>
+                        <span className={styles.statusBadge}>{camp.status}</span>
                       </div>
                     </div>
                     {camp.stats && (
                       <div className={styles.logStats}>
                         <div className={styles.logStatItem}>
                           <label>REVENUE</label>
-                          <span className="text-green">${camp.stats.revenue.toFixed(0)}</span>
+                          <span style={{ color: '#818cf8' }}>${camp.stats.revenue.toFixed(0)}</span>
                         </div>
-                        <ArrowUpRight size={14} className={styles.muted} />
+                        <ArrowUpRight size={14} style={{ color: 'rgba(255,255,255,0.3)' }} />
                       </div>
                     )}
-                  </div>
+                  </motion.div>
                 ))
               )}
             </div>
@@ -199,12 +218,12 @@ export default function TelemetryDashboard({
         </div>
 
         {/* Telemetry Terminal */}
-        <div style={{ gridColumn: 'span 5' }}>
+        <div className={styles.rightCol}>
           <div className={styles.terminal}>
             <div className={styles.terminalHeader}>
               <div className={styles.terminalTitle}>
-                <Cpu size={14} className={styles.indigo} />
-                <span>delivery_webhook_listener.sh</span>
+                <Cpu size={14} />
+                <span>delivery_signals_node.sh</span>
               </div>
               <RefreshCw 
                 size={14} 
@@ -224,6 +243,6 @@ export default function TelemetryDashboard({
           </div>
         </div>
       </div>
-    </div>
+    </motion.div>
   );
 }

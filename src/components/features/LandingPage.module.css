@@ -1,22 +1,23 @@
 .landingContainer {
   min-height: 100vh;
-  background: radial-gradient(circle at top right, rgba(99, 102, 241, 0.05), transparent 40%),
-              radial-gradient(circle at bottom left, rgba(52, 211, 153, 0.03), transparent 40%);
+  background: var(--bg-deep);
 }
 
 .heroSection {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 1.2fr 1fr;
   align-items: center;
-  gap: 40px;
-  min-height: 85vh;
-  max-width: 1400px;
+  gap: 80px;
+  min-height: 90vh;
+  max-width: 1200px;
   margin: 0 auto;
   padding: 0 24px;
+  position: relative;
 }
 
 .heroContent {
   max-width: 600px;
+  z-index: 2;
 }
 
 .heroBadge {
@@ -26,33 +27,31 @@
   padding: 6px 12px;
   background: rgba(99, 102, 241, 0.1);
   border: 1px solid rgba(99, 102, 241, 0.2);
-  border-radius: 100px;
+  border-radius: 4px;
   font-size: 12px;
-  font-weight: 500;
+  font-weight: 600;
   color: var(--accent-indigo);
   margin-bottom: 24px;
-}
-
-.sparkle {
-  color: var(--accent-indigo);
 }
 
 .heroTitle {
   margin-bottom: 24px;
-  font-size: 4.5rem;
+  font-size: 5rem;
+  line-height: 1;
+  font-weight: 800;
+  letter-spacing: -0.04em;
 }
 
-.highlight {
+.indigoText {
   color: var(--accent-indigo);
   position: relative;
 }
 
 .heroSubtitle {
-  font-size: 18px;
+  font-size: 1.25rem;
   line-height: 1.6;
   color: var(--color-secondary);
   margin-bottom: 40px;
-  max-width: 500px;
 }
 
 .ctaGroup {
@@ -61,7 +60,61 @@
 }
 
 .healthCardWrapper {
-  perspective: 1000px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  max-width: 400px;
+  margin: 0 auto;
+}
+
+.healthCard {
+  width: 100%;
+}
+
+.aiWidget {
+  width: 100%;
+  background: rgba(99, 102, 241, 0.05);
+  border: 1px solid rgba(99, 102, 241, 0.2);
+  border-radius: var(--radius-md);
+  padding: 12px 16px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.aiWidgetIcon {
+  width: 28px;
+  height: 28px;
+  background: var(--accent-indigo);
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+}
+
+.aiWidgetText {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex: 1;
+}
+
+.aiWidgetText h4 {
+  font-size: 12px;
+  margin: 0;
+  color: var(--color-primary);
+}
+
+.aiWidgetText p {
+  font-size: 11px;
+  margin: 0;
+  color: var(--color-tertiary);
+  font-family: var(--font-mono);
 }
 
 .healthHeader {
@@ -72,8 +125,11 @@
 }
 
 .healthHeader h3 {
-  font-size: 18px;
+  font-size: 14px;
   margin: 0;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--color-tertiary);
 }
 
 .healthGrid {
@@ -86,14 +142,15 @@
 .healthItem {
   display: flex;
   flex-direction: column;
-  gap: 6px;
+  gap: 4px;
 }
 
 .healthLabel {
-  font-size: 11px;
+  font-size: 10px;
   text-transform: uppercase;
-  letter-spacing: 0.05em;
-  color: var(--color-tertiary);
+  letter-spacing: 0.1em;
+  color: var(--color-muted);
+  font-weight: 600;
 }
 
 .healthStatus {
@@ -102,71 +159,380 @@
   gap: 8px;
   font-size: 14px;
   font-weight: 500;
+  color: var(--color-primary);
 }
 
 .dot {
-  width: 8px;
-  height: 8px;
+  width: 6px;
+  height: 6px;
   border-radius: 50%;
-  background: var(--color-muted);
+  background: var(--accent-red);
 }
 
 .online {
-  background: var(--accent-green);
-  box-shadow: 0 0 10px var(--accent-green);
+  background: var(--accent-indigo);
 }
 
 .healthValue {
   font-family: var(--font-mono);
-  font-size: 18px;
+  font-size: 20px;
   font-weight: 600;
   color: var(--color-primary);
 }
 
 .seedBtn {
   font-size: 12px;
-  color: var(--accent-indigo);
-  border-color: rgba(99, 102, 241, 0.3);
 }
 
+/* Intelligence Section */
+.intelligenceSection {
+  padding: 120px 0;
+  background: radial-gradient(circle at 50% 50%, rgba(99, 102, 241, 0.03) 0%, transparent 70%);
+}
+
+.intelligenceCard {
+  background: var(--bg-surface);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-lg);
+  display: grid;
+  grid-template-columns: 1fr 1.2fr;
+  overflow: hidden;
+}
+
+.intelligenceContent {
+  padding: 60px;
+}
+
+.intelligenceVisual {
+  background: #0c0c0e;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  min-height: 400px;
+}
+
+.nodeMap {
+  width: 80%;
+  height: 80%;
+}
+
+.intelligenceTag {
+  color: var(--accent-indigo);
+  font-weight: 700;
+  font-size: 14px;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  margin-bottom: 16px;
+  display: block;
+}
+
+/* Global Scale Section - Bento Redesign */
+.scaleSection {
+  padding: 120px 0;
+  background-image: radial-gradient(circle at 2px 2px, rgba(255, 255, 255, 0.03) 1px, transparent 0);
+  background-size: 40px 40px;
+}
+
+.sectionHeaderCentered {
+  text-align: center;
+  margin-bottom: 60px;
+}
+
+.bentoGrid {
+  display: grid;
+  grid-template-columns: 1.5fr 1fr;
+  gap: 24px;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.bentoCard {
+  background: var(--bg-surface);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-lg);
+  padding: 32px;
+  position: relative;
+  overflow: hidden;
+  transition: var(--transition-base);
+}
+
+.bentoCard:hover {
+  border-color: var(--border-muted);
+  box-shadow: 0 0 40px rgba(99, 102, 241, 0.05);
+}
+
+.largeBento {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  min-height: 380px;
+}
+
+.smallBentoCol {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.bentoIconBox {
+  width: 48px;
+  height: 48px;
+  background: rgba(99, 102, 241, 0.1);
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 32px;
+}
+
+.bentoValue {
+  font-size: 5rem;
+  font-weight: 800;
+  line-height: 1;
+  letter-spacing: -0.04em;
+  margin-bottom: 12px;
+}
+
+.bentoLabel {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--color-primary);
+  margin-bottom: 12px;
+}
+
+.bentoDesc {
+  color: var(--color-tertiary);
+  font-size: 1rem;
+  max-width: 320px;
+}
+
+.bentoNodes {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  padding: 32px;
+  display: flex;
+  gap: 8px;
+}
+
+.miniNode {
+  width: 4px;
+  height: 12px;
+  background: var(--accent-indigo);
+  border-radius: 2px;
+}
+
+.bentoHeader {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.bentoHeader span {
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--color-tertiary);
+}
+
+.bentoValueSmall {
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin-bottom: 4px;
+}
+
+.bentoLabelSmall {
+  font-size: 0.875rem;
+  color: var(--color-tertiary);
+}
+
+/* Marquee Styles */
+.marqueeContainer {
+  margin-top: 100px;
+  width: 100%;
+  overflow: hidden;
+  position: relative;
+}
+
+.marqueeContainer::before,
+.marqueeContainer::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  width: 150px;
+  height: 100%;
+  z-index: 2;
+}
+
+.marqueeContainer::before {
+  left: 0;
+  background: linear-gradient(to right, var(--bg-deep), transparent);
+}
+
+.marqueeContainer::after {
+  right: 0;
+  background: linear-gradient(to left, var(--bg-deep), transparent);
+}
+
+.marqueeContent {
+  display: flex;
+  width: max-content;
+  animation: marquee 30s linear infinite;
+}
+
+.marqueeRow {
+  display: flex;
+  align-items: center;
+  gap: 80px;
+  padding-right: 80px;
+}
+
+.brandLogo {
+  font-size: 20px;
+  font-weight: 800;
+  letter-spacing: -0.05em;
+  color: var(--color-muted);
+  opacity: 0.4;
+  transition: var(--transition-fast);
+  cursor: default;
+}
+
+.brandLogo:hover {
+  opacity: 1;
+  color: var(--color-secondary);
+}
+
+@keyframes marquee {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+/* Pricing Section */
+.pricingSection {
+  padding: 120px 0;
+}
+
+.pricingGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 32px;
+  margin-top: 60px;
+}
+
+.pricingCard {
+  padding: 40px;
+  display: flex;
+  flex-direction: column;
+}
+
+.proCard {
+  border-color: var(--accent-indigo);
+  background: linear-gradient(to bottom, var(--bg-surface), rgba(99, 102, 241, 0.05));
+  transform: scale(1.05);
+}
+
+.pricingHeader h4 {
+  font-size: 14px;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--color-tertiary);
+  margin-bottom: 8px;
+}
+
+.proTag {
+  background: var(--accent-indigo);
+  color: white;
+  padding: 4px 12px;
+  border-radius: 20px;
+  font-size: 10px;
+  font-weight: 700;
+  margin-left: 8px;
+  vertical-align: middle;
+}
+
+.price {
+  font-size: 3rem;
+  font-weight: 800;
+  margin: 24px 0;
+}
+
+.price span {
+  font-size: 1rem;
+  color: var(--color-tertiary);
+  font-weight: 400;
+}
+
+.featureList {
+  list-style: none;
+  margin: 32px 0;
+  flex: 1;
+}
+
+.featureItem {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 14px;
+  color: var(--color-secondary);
+  margin-bottom: 16px;
+}
+
+.checkIcon {
+  color: var(--accent-indigo);
+}
+
+/* Existing sections updates */
 .sandboxSection {
-  padding: 100px 0;
+  padding: 120px 0;
 }
 
 .sandboxGrid {
   display: grid;
-  grid-template-columns: 1fr 1.5fr;
+  grid-template-columns: 0.8fr 1.2fr;
   align-items: center;
   gap: 60px;
 }
 
 .sectionTitle {
-  font-size: 2rem;
-  margin-bottom: 16px;
+  font-size: 2.5rem;
+  margin-bottom: 12px;
 }
 
 .sectionText {
+  font-size: 1.125rem;
   color: var(--color-secondary);
-  line-height: 1.6;
 }
 
 .sandboxInputBox {
   display: flex;
   gap: 12px;
+  background: var(--bg-surface-hover);
+  padding: 8px;
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md);
 }
 
-.sandboxInputBox input {
+.input {
   flex: 1;
+  background: transparent;
+  border: none;
+  padding: 12px 20px;
+  color: var(--color-primary);
+  font-size: 15px;
+  outline: none;
 }
 
 .processSection {
-  padding: 100px 0 150px;
+  padding: 120px 0 160px;
 }
 
 .centeredTitle {
   text-align: center;
-  margin-bottom: 60px;
-  font-size: 2.5rem;
+  margin-bottom: 80px;
+  font-size: 3.5rem;
 }
 
 .processGrid {
@@ -176,16 +542,11 @@
 }
 
 .processStep {
-  background: rgba(15, 15, 18, 0.4);
-  border: 1px solid var(--border-glass);
-  padding: 32px;
-  border-radius: 16px;
-  transition: var(--transition-smooth);
-}
-
-.processStep:hover {
-  border-color: var(--border-glass-focus);
-  transform: translateY(-4px);
+  background: var(--bg-surface);
+  border: 1px solid var(--border-subtle);
+  padding: 40px;
+  border-radius: var(--radius-md);
+  transition: var(--transition-base);
 }
 
 .stepIconBox {
@@ -200,55 +561,54 @@
 }
 
 .processStep h4 {
-  font-size: 18px;
+  font-size: 20px;
   margin-bottom: 12px;
 }
 
 .processStep p {
-  font-size: 14px;
-  color: var(--color-secondary);
-  line-height: 1.6;
+  font-size: 15px;
+  color: var(--color-tertiary);
 }
 
 .footer {
-  padding: 40px 0;
-  border-top: 1px solid var(--border-glass);
+  padding: 60px 0;
+  border-top: 1px solid var(--border-subtle);
 }
 
 .footerContent {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  font-size: 12px;
+  font-size: 14px;
   color: var(--color-tertiary);
 }
 
 .footerLinks {
   display: flex;
-  gap: 24px;
+  gap: 32px;
 }
 
 .footerLink {
   background: transparent;
   border: none;
   color: var(--color-tertiary);
-  font-size: 12px;
+  font-size: 14px;
+  font-weight: 500;
   cursor: pointer;
   text-decoration: none;
-  transition: var(--transition-smooth);
+  transition: var(--transition-fast);
 }
 
 .footerLink:hover {
   color: var(--color-primary);
 }
 
-.indigo { color: var(--accent-indigo); }
-
 @media (max-width: 1024px) {
   .heroSection {
     grid-template-columns: 1fr;
     text-align: center;
-    padding-top: 60px;
+    padding-top: 80px;
+    gap: 60px;
   }
   .heroContent {
     max-width: 100%;
@@ -259,6 +619,17 @@
   .ctaGroup {
     justify-content: center;
   }
+  .intelligenceCard {
+    grid-template-columns: 1fr;
+  }
+  .pricingGrid {
+    grid-template-columns: 1fr;
+    max-width: 500px;
+    margin: 60px auto 0;
+  }
+  .proCard {
+    transform: none;
+  }
   .sandboxGrid {
     grid-template-columns: 1fr;
     gap: 32px;
@@ -266,6 +637,12 @@
   }
   .processGrid {
     grid-template-columns: repeat(2, 1fr);
+  }
+  .heroTitle {
+    font-size: 4rem;
+  }
+  .bentoGrid {
+    grid-template-columns: 1fr;
   }
 }
 
@@ -275,5 +652,11 @@
   }
   .processGrid {
     grid-template-columns: 1fr;
+  }
+  .scaleGrid {
+    grid-template-columns: 1fr;
+  }
+  .bentoValue {
+    font-size: 3.5rem;
   }
 }
