@@ -1,0 +1,262 @@
+.kpiCard {
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.kpiHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 13px;
+  color: var(--color-secondary);
+  font-weight: 500;
+}
+
+.kpiFooter {
+  font-size: 12px;
+  color: var(--color-tertiary);
+}
+
+.activeMonitor {
+  border-color: var(--accent-indigo) !important;
+  background: rgba(99, 102, 241, 0.03);
+}
+
+.monitorHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+}
+
+.monitorTitle {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.pulseDot {
+  width: 8px;
+  height: 8px;
+  background: var(--accent-indigo);
+  border-radius: 50%;
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0% { box-shadow: 0 0 0 0 rgba(99, 102, 241, 0.4); }
+  70% { box-shadow: 0 0 0 10px rgba(99, 102, 241, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(99, 102, 241, 0); }
+}
+
+.monitorProgress {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  color: var(--color-secondary);
+}
+
+.progressBar {
+  height: 6px;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 3px;
+  overflow: hidden;
+  margin-bottom: 20px;
+}
+
+.progressFill {
+  height: 100%;
+  background: var(--accent-indigo);
+  transition: width 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.monitorStats {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+}
+
+.subStat {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.subStat label {
+  font-size: 10px;
+  text-transform: uppercase;
+  color: var(--color-tertiary);
+  letter-spacing: 0.05em;
+}
+
+.subStat span {
+  font-size: 16px;
+  font-weight: 600;
+  font-family: var(--font-mono);
+}
+
+.sectionHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.sectionHeader h3 {
+  font-size: 16px;
+  margin: 0;
+}
+
+.logList {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.logItem {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 16px;
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid var(--border-glass);
+  border-radius: 10px;
+  cursor: pointer;
+  transition: var(--transition-smooth);
+}
+
+.logItem:hover {
+  background: var(--bg-card-hover);
+  border-color: var(--border-glass-focus);
+  transform: translateX(4px);
+}
+
+.logName {
+  display: block;
+  font-weight: 600;
+  font-size: 14px;
+  margin-bottom: 4px;
+}
+
+.logMeta {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 11px;
+  color: var(--color-secondary);
+}
+
+.channelLabel {
+  text-transform: uppercase;
+  font-weight: 700;
+  color: var(--accent-blue);
+}
+
+.logStats {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.logStatItem {
+  text-align: right;
+}
+
+.logStatItem label {
+  display: block;
+  font-size: 9px;
+  color: var(--color-tertiary);
+  margin-bottom: 2px;
+}
+
+.logStatItem span {
+  font-size: 12px;
+  font-weight: 600;
+  font-family: var(--font-mono);
+}
+
+.terminal {
+  background: #000;
+  border: 1px solid var(--border-glass);
+  border-radius: 12px;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.terminalHeader {
+  background: #111;
+  padding: 10px 16px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid var(--border-glass);
+}
+
+.terminalTitle {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  color: var(--color-secondary);
+}
+
+.refreshIcon {
+  color: var(--color-tertiary);
+  cursor: pointer;
+  transition: color 0.2s;
+}
+
+.refreshIcon:hover {
+  color: white;
+}
+
+.terminalLogs {
+  padding: 16px;
+  flex: 1;
+  overflow-y: auto;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  line-height: 1.6;
+  max-height: 400px;
+}
+
+.terminalRow {
+  margin-bottom: 4px;
+  color: var(--color-secondary);
+}
+
+.terminalHighlight {
+  color: var(--accent-indigo);
+  background: rgba(99, 102, 241, 0.1);
+  margin-left: -16px;
+  margin-right: -16px;
+  padding-left: 16px;
+  padding-right: 16px;
+}
+
+.timestamp {
+  color: var(--color-muted);
+  margin-right: 8px;
+}
+
+.emptyState {
+  padding: 40px;
+  text-align: center;
+  color: var(--color-tertiary);
+  font-size: 13px;
+}
+
+.muted { color: var(--color-tertiary); }
+.indigo { color: var(--accent-indigo); }
+.green { color: var(--accent-green); }
+.flex { display: flex; }
+.flex-col { flex-direction: column; }
+.gap-16 { gap: 16px; }
+.mb-24 { margin-bottom: 24px; }
+.text-green { color: var(--accent-green); }

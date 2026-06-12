@@ -1,0 +1,228 @@
+.sectionHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 24px;
+}
+
+.headerTitle {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.headerTitle h3 {
+  font-size: 18px;
+  margin: 0;
+}
+
+.helperText {
+  font-size: 11px;
+  color: var(--color-tertiary);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+
+.ruleList {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.ruleRow {
+  display: grid;
+  grid-template-columns: 1.5fr 1fr 1fr 40px;
+  gap: 12px;
+}
+
+.removeBtn {
+  background: transparent;
+  border: 1px solid var(--border-glass);
+  border-radius: 8px;
+  color: var(--accent-red);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: var(--transition-smooth);
+}
+
+.removeBtn:hover:not(:disabled) {
+  background: rgba(248, 113, 113, 0.1);
+  border-color: var(--accent-red);
+}
+
+.removeBtn:disabled {
+  opacity: 0.3;
+  cursor: not-allowed;
+}
+
+.sqlBox {
+  background: #000;
+  border: 1px solid var(--border-glass);
+  border-radius: 8px;
+  padding: 12px 16px;
+  margin-bottom: 24px;
+}
+
+.sqlBox label {
+  display: block;
+  font-size: 10px;
+  text-transform: uppercase;
+  color: var(--color-muted);
+  margin-bottom: 8px;
+  font-weight: 600;
+}
+
+.sqlBox code {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  color: var(--color-secondary);
+  word-break: break-all;
+}
+
+.saveForm {
+  display: flex;
+  align-items: flex-end;
+  gap: 16px;
+  border-top: 1px solid var(--border-glass);
+  padding-top: 24px;
+}
+
+.inputGroup {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.inputGroup label {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--color-secondary);
+}
+
+.aiHelp {
+  font-size: 13px;
+  color: var(--color-secondary);
+  line-height: 1.5;
+  margin-bottom: 16px;
+}
+
+.aiTextarea {
+  height: 100px;
+  resize: none;
+  font-size: 13px;
+}
+
+.aiResult {
+  margin-top: 24px;
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid var(--border-glass);
+  border-radius: 12px;
+  padding: 16px;
+}
+
+.resultHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 12px;
+  font-weight: 600;
+  margin-bottom: 12px;
+}
+
+.aiFields {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.libraryTitle {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--color-secondary);
+  margin-bottom: 16px;
+}
+
+.chipCloud {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 24px;
+}
+
+.segmentChip {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid var(--border-glass);
+  border-radius: 100px;
+  padding: 8px 16px;
+  font-size: 13px;
+  color: var(--color-secondary);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  transition: var(--transition-smooth);
+}
+
+.segmentChip:hover {
+  border-color: var(--color-tertiary);
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.activeChip {
+  background: rgba(99, 102, 241, 0.1);
+  border-color: var(--accent-indigo);
+  color: var(--accent-indigo);
+}
+
+.chipSize {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  opacity: 0.7;
+}
+
+.previewSection {
+  border-top: 1px solid var(--border-glass);
+  padding-top: 20px;
+}
+
+.previewHeader {
+  font-size: 11px;
+  text-transform: uppercase;
+  color: var(--color-tertiary);
+  margin-bottom: 12px;
+  letter-spacing: 0.05em;
+}
+
+.previewList {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
+}
+
+.previewItem {
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid var(--border-glass);
+  padding: 10px 14px;
+  border-radius: 8px;
+  display: flex;
+  justify-content: space-between;
+  font-size: 13px;
+}
+
+.moreIndicator {
+  font-size: 11px;
+  color: var(--color-muted);
+  display: flex;
+  align-items: center;
+}
+
+.previewLoader {
+  text-align: center;
+  padding: 20px;
+  color: var(--color-tertiary);
+  font-size: 13px;
+}

@@ -1,0 +1,287 @@
+.composerGrid {
+  display: grid;
+  grid-template-columns: 1.2fr 0.8fr;
+  gap: 24px;
+}
+
+.wizardCard {
+  background: rgba(9, 9, 11, 0.5);
+  border: 1px solid var(--border-glass);
+  border-radius: 16px;
+  overflow: hidden;
+}
+
+.wizardSteps {
+  display: flex;
+  background: rgba(255, 255, 255, 0.02);
+  border-bottom: 1px solid var(--border-glass);
+}
+
+.wizardStep {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 16px;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--color-tertiary);
+  transition: var(--transition-smooth);
+}
+
+.activeStep {
+  color: var(--color-primary);
+}
+
+.stepNum {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  border: 1px solid currentColor;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 10px;
+}
+
+.wizardStep.activeStep .stepNum {
+  background: var(--accent-indigo);
+  border-color: var(--accent-indigo);
+  color: white;
+}
+
+.wizardForm {
+  padding: 32px;
+}
+
+.formGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.formGroup label {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--color-secondary);
+}
+
+.channelGrid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px;
+}
+
+.channelBtn {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px;
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid var(--border-glass);
+  border-radius: 10px;
+  color: var(--color-secondary);
+  cursor: pointer;
+  transition: var(--transition-smooth);
+}
+
+.channelBtn:hover {
+  background: rgba(255, 255, 255, 0.05);
+  border-color: var(--color-tertiary);
+}
+
+.activeChannel {
+  background: rgba(99, 102, 241, 0.1);
+  border-color: var(--accent-indigo);
+  color: var(--accent-indigo);
+}
+
+.aiCopyBox {
+  background: #111;
+  border: 1px solid var(--border-glass);
+  border-radius: 12px;
+  padding: 16px;
+}
+
+.aiHeader {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--color-secondary);
+  margin-bottom: 12px;
+}
+
+.aiInputRow {
+  display: flex;
+  gap: 10px;
+}
+
+.templateArea {
+  height: 140px;
+  resize: vertical;
+  line-height: 1.6;
+}
+
+.varsHint {
+  font-size: 10px;
+  color: var(--color-muted);
+}
+
+.reviewCard {
+  background: #111;
+  border: 1px solid var(--border-glass);
+  padding: 24px;
+  border-radius: 12px;
+}
+
+.reviewTitle {
+  font-size: 14px;
+  font-weight: 600;
+  margin-bottom: 20px;
+  color: var(--color-primary);
+}
+
+.reviewGrid {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.reviewItem {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 13px;
+}
+
+.reviewItem label {
+  color: var(--color-tertiary);
+}
+
+.reviewItem span {
+  font-weight: 600;
+}
+
+/* Simulator Styles */
+.simulatorPanel {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 24px;
+}
+
+.simulatorTitle {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--color-tertiary);
+}
+
+.phoneFrame {
+  width: 280px;
+  height: 560px;
+  background: #000;
+  border: 8px solid #222;
+  border-radius: 40px;
+  position: relative;
+  overflow: hidden;
+  box-shadow: var(--shadow-premium);
+}
+
+.phoneNotch {
+  width: 120px;
+  height: 24px;
+  background: #222;
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  border-bottom-left-radius: 12px;
+  border-bottom-right-radius: 12px;
+  z-index: 20;
+}
+
+.phoneScreen {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.appHeader {
+  background: #111;
+  padding: 32px 16px 16px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  border-bottom: 1px solid #222;
+}
+
+.avatar {
+  width: 36px;
+  height: 36px;
+  background: var(--accent-indigo);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  color: white;
+}
+
+.appName {
+  font-size: 14px;
+  font-weight: 600;
+  color: white;
+}
+
+.appStatus {
+  font-size: 10px;
+  color: var(--accent-green);
+}
+
+.chatArea {
+  flex: 1;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  background: #000;
+}
+
+.systemBubble {
+  align-self: center;
+  background: #111;
+  padding: 8px 12px;
+  border-radius: 8px;
+  font-size: 11px;
+  color: var(--color-tertiary);
+  text-align: center;
+  max-width: 80%;
+}
+
+.outgoingBubble {
+  align-self: flex-end;
+  background: var(--accent-indigo);
+  padding: 10px 14px;
+  border-radius: 16px 16px 4px 16px;
+  font-size: 13px;
+  color: white;
+  max-width: 85%;
+  line-height: 1.5;
+  position: relative;
+}
+
+.bubbleTime {
+  font-size: 9px;
+  opacity: 0.7;
+  text-align: right;
+  margin-top: 4px;
+}
+
+.muted { color: var(--color-tertiary); }

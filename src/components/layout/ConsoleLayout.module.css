@@ -1,0 +1,40 @@
+.container {
+  display: flex;
+  min-height: 100vh;
+  background: var(--bg-main);
+}
+
+.main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  overflow-y: auto;
+}
+
+.header {
+  padding: 40px 0;
+  border-bottom: 1px solid var(--border-glass);
+  background: rgba(9, 9, 11, 0.5);
+  backdrop-filter: blur(10px);
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+.title {
+  font-size: 24px;
+  font-weight: 700;
+  margin-bottom: 8px;
+  color: var(--color-primary);
+}
+
+.subtitle {
+  font-size: 14px;
+  color: var(--color-secondary);
+}
+
+.content {
+  padding: 32px 0 60px;
+  flex: 1;
+}

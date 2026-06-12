@@ -1,0 +1,84 @@
+datasource db {
+  provider = "sqlite"
+  url      = "file:./dev.db"
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model Customer {
+  id           String             @id @default(uuid())
+  firstName    String
+  lastName     String
+  email        String             @unique
+  phone        String             @unique
+  totalSpent   Float              @default(0.0)
+  customFields String?            // JSON string for custom attributes
+  createdAt    DateTime           @default(now())
+  updatedAt    DateTime           @updatedAt
+  orders       Order[]
+  commLogs     CommunicationLog[]
+}
+
+model Order {
+  id           String             @id @default(uuid())
+  customerId   String
+  customer     Customer           @relation(fields: [customerId], references: [id], onDelete: Cascade)
+  amount       Float
+  items        String             // JSON string of items in order
+  purchaseDate DateTime           @default(now())
+  commLogId    String?            // Associated communication log if converted
+  commLog      CommunicationLog?  @relation("OrderConversion", fields: [commLogId], references: [id])
+}
+
+model Segment {
+  id           String             @id @default(uuid())
+  name         String
+  description  String?
+  definition   String             // JSON string of filtering rules
+  sqlQuery     String?            // Cached query representation or generated SQL
+  campaigns    Campaign[]
+  createdAt    DateTime           @default(now())
+  updatedAt    DateTime           @updatedAt
+}
+
+model Campaign {
+  id              String             @id @default(uuid())
+  name            String
+  description     String?
+  channel         String             // "whatsapp" | "sms" | "email" | "rcs"
+  messageTemplate String             // Message body template with variables e.g. {{firstName}}
+  segmentId       String
+  segment         Segment            @relation(fields: [segmentId], references: [id])
+  status          String             // "draft" | "scheduled" | "running" | "completed" | "failed"
+  createdAt       DateTime           @default(now())
+  updatedAt       DateTime           @updatedAt
+  logs            CommunicationLog[]
+}
+
+model CommunicationLog {
+  id          String    @id @default(uuid())
+  campaignId  String
+  campaign    Campaign  @relation(fields: [campaignId], references: [id], onDelete: Cascade)
+  customerId  String
+  customer    Customer  @relation(fields: [customerId], references: [id], onDelete: Cascade)
+  channel     String    // "whatsapp" | "sms" | "email" | "rcs"
+  recipient   String    // phone number or email address
+  message     String    // Personalized message body
+  status      String    // "pending" | "sent" | "delivered" | "failed" | "opened" | "clicked" | "converted"
+  retryCount  Int       @default(0)
+  
+  // Transition timestamps for advanced metrics
+  sentAt      DateTime?
+  deliveredAt DateTime?
+  failedAt    DateTime?
+  openedAt    DateTime?
+  clickedAt   DateTime?
+  convertedAt DateTime?
+
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+  
+  conversions Order[]   @relation("OrderConversion")
+}
