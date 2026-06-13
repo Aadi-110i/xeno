@@ -1,6 +1,7 @@
 'use client';
 
-import Sidebar from './Sidebar';
+import { motion } from 'motion/react';
+import ConsoleNavbar from './ConsoleNavbar';
 import styles from './ConsoleLayout.module.css';
 
 interface ConsoleLayoutProps {
@@ -24,7 +25,7 @@ export default function ConsoleLayout({
 }: ConsoleLayoutProps) {
   return (
     <div className={styles.container}>
-      <Sidebar 
+      <ConsoleNavbar 
         activeTab={activeTab} 
         setActiveTab={setActiveTab} 
         channelOnline={channelOnline} 

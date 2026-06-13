@@ -89,51 +89,51 @@ export default function SignupPage() {
             animate={{ rotate: 0, opacity: 1 }}
             transition={{ delay: 0.4, duration: 0.6 }}
           >
-            <Cpu className={styles.logoIcon} size={40} />
+            <Cpu className={styles.logoIcon} size={40} strokeWidth={1.5} />
           </motion.div>
-          <span className={styles.logoText}>Xeno Intelligence</span>
+          <span className={styles.logoText}>XENO_CORE / REGISTRY</span>
         </div>
 
         <div className={styles.header}>
-          <h1>Create Account</h1>
-          <p>Join the next generation of AI-native CRM</p>
+          <h1>Node Registration</h1>
+          <p>Provision new orchestration identity</p>
         </div>
 
         <form className={styles.form} onSubmit={handleSubmit}>
           {error && <div className={styles.error}>{error}</div>}
           
           <div className={styles.inputGroup}>
-            <label className={styles.inputLabel}>Full Name</label>
+            <label className={styles.inputLabel}>Full Identity Name</label>
             <div className={styles.inputContainer}>
               <input 
                 type="text" 
                 className={styles.inputField} 
-                placeholder="Jane Cooper" 
+                placeholder="Core Operator" 
                 required 
                 value={name}
                 onChange={(e) => setName(e.target.value)}
               />
-              <User className={styles.inputIcon} size={18} />
+              <User className={styles.inputIcon} size={18} strokeWidth={1.5} />
             </div>
           </div>
 
           <div className={styles.inputGroup}>
-            <label className={styles.inputLabel}>Registry Email</label>
+            <label className={styles.inputLabel}>Registry ID (Email)</label>
             <div className={styles.inputContainer}>
               <input 
                 type="email" 
                 className={styles.inputField} 
-                placeholder="name@company.com" 
+                placeholder="identity@xeno.core" 
                 required 
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
               />
-              <Mail className={styles.inputIcon} size={18} />
+              <Mail className={styles.inputIcon} size={18} strokeWidth={1.5} />
             </div>
           </div>
           
           <div className={styles.inputGroup}>
-            <label className={styles.inputLabel}>Secure Password</label>
+            <label className={styles.inputLabel}>Access Key (Password)</label>
             <div className={styles.inputContainer}>
               <input 
                 type="password" 
@@ -143,7 +143,7 @@ export default function SignupPage() {
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
               />
-              <Lock className={styles.inputIcon} size={18} />
+              <Lock className={styles.inputIcon} size={18} strokeWidth={1.5} />
             </div>
           </div>
 
@@ -152,7 +152,7 @@ export default function SignupPage() {
             className={styles.submitBtn}
             disabled={loading}
           >
-            {loading ? <Loader2 className="animate-spin" size={18} /> : <>Create Account <ArrowRight size={18} /></>}
+            {loading ? <Loader2 className="animate-spin" size={18} /> : <>Register Node <ArrowRight size={18} strokeWidth={2.5} /></>}
           </button>
         </form>
 
@@ -162,16 +162,16 @@ export default function SignupPage() {
 
         <div className={styles.socialGrid}>
           <button className={styles.socialBtn}>
-            <Globe size={18} /> Google
+            <Globe size={18} strokeWidth={1.5} /> Google
           </button>
           <button className={styles.socialBtn}>
-            <Code size={18} /> GitHub
+            <Code size={18} strokeWidth={1.5} /> GitHub
           </button>
         </div>
 
         <div className={styles.footer}>
-          <span>Already a member?</span>
-          <Link href="/login" className={styles.footerLink}>Sign In</Link>
+          <span>Already registered?</span>
+          <Link href="/login" className={styles.footerLink}>Initialize Session</Link>
         </div>
       </motion.div>
     </div>

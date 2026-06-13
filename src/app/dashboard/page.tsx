@@ -251,6 +251,36 @@ export default function DashboardPage() {
     }
   }, [addTelemetry, fetchCampaigns, fetchCustomers]);
 
+  // Inactivity Timeout (30 minutes)
+  useEffect(() => {
+    let timeout: NodeJS.Timeout;
+    const INACTIVITY_LIMIT = 30 * 60 * 1000; // 30 minutes
+
+    const resetTimer = () => {
+      clearTimeout(timeout);
+      timeout = setTimeout(async () => {
+        addTelemetry('[Session] Logging out due to 30 minutes of inactivity...');
+        try {
+          await fetch('/api/auth/logout', { method: 'POST' });
+          router.push('/login');
+        } catch (error) {
+          router.push('/login');
+        }
+      }, INACTIVITY_LIMIT);
+    };
+
+    // Events to track activity
+    const events = ['mousedown', 'mousemove', 'keypress', 'scroll', 'touchstart'];
+    events.forEach(event => window.addEventListener(event, resetTimer));
+
+    resetTimer(); // Start timer on mount
+
+    return () => {
+      clearTimeout(timeout);
+      events.forEach(event => window.removeEventListener(event, resetTimer));
+    };
+  }, [router, addTelemetry]);
+
   // Load database state & system checks
   useEffect(() => {
     const checkUser = async () => {

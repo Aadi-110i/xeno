@@ -2,10 +2,19 @@
 
 import { motion } from 'motion/react';
 import Link from 'next/link';
-import { Cpu } from 'lucide-react';
+import { Cpu, LogOut } from 'lucide-react';
 import styles from './Navbar.module.css';
 
 export default function Navbar({ user, onEnterConsole }: { user?: any; onEnterConsole?: () => void }) {
+  const handleLogout = async () => {
+    try {
+      await fetch('/api/auth/logout', { method: 'POST' });
+      window.location.href = '/';
+    } catch (error) {
+      console.error('Logout failed', error);
+    }
+  };
+
   return (
     <motion.nav 
       className={styles.navbar}
@@ -15,7 +24,7 @@ export default function Navbar({ user, onEnterConsole }: { user?: any; onEnterCo
     >
       <div className={styles.navContainer}>
         <div className={styles.logoGroup}>
-          <Cpu className={styles.logoIcon} size={24} />
+          <Cpu className={styles.logoIcon} size={24} strokeWidth={1.5} />
           <span className={styles.logoText}>XENO</span>
         </div>
         
@@ -28,11 +37,11 @@ export default function Navbar({ user, onEnterConsole }: { user?: any; onEnterCo
         <div className={styles.authGroup}>
           {user ? (
             <div className={styles.userProfile}>
-              <span className={styles.welcomeText}>
-                Hello, <span className={styles.userName}>{user.name || user.email.split('@')[0]}</span>
-              </span>
+              <button className={styles.loginBtn} onClick={handleLogout} style={{ border: 'none', background: 'none', cursor: 'pointer' }}>
+                <LogOut size={14} strokeWidth={2} /> Sign Out
+              </button>
               <button className={styles.consoleBtn} onClick={onEnterConsole}>
-                Go to Console
+                Console
               </button>
             </div>
           ) : (

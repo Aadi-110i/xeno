@@ -6,7 +6,7 @@ import {
   Users, 
   Target, 
   Database, 
-  Sparkles,
+  Zap,
   Layers,
   Activity,
   LogOut,
@@ -44,7 +44,7 @@ export default function ConsoleNavbar({ activeTab, setActiveTab, channelOnline, 
     { id: 'segments', label: 'Segments', icon: Layers },
     { id: 'campaigns', label: 'Campaigns', icon: Target },
     { id: 'ingest', label: 'Data Ingest', icon: Database },
-    { id: 'copilot', label: 'AI Copilot', icon: Sparkles },
+    { id: 'copilot', label: 'AI Core', icon: Zap },
   ];
 
   return (

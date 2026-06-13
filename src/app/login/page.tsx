@@ -88,31 +88,31 @@ export default function LoginPage() {
             animate={{ rotate: 0, opacity: 1 }}
             transition={{ delay: 0.4, duration: 0.6 }}
           >
-            <Cpu className={styles.logoIcon} size={40} />
+            <Cpu className={styles.logoIcon} size={40} strokeWidth={1.5} />
           </motion.div>
-          <span className={styles.logoText}>Xeno Intelligence</span>
+          <span className={styles.logoText}>XENO_CORE / AUTH</span>
         </div>
 
         <div className={styles.header}>
-          <h1>Welcome Back</h1>
-          <p>Access your autonomous orchestration console</p>
+          <h1>Node Access</h1>
+          <p>Initialize orchestration session</p>
         </div>
 
         <form className={styles.form} onSubmit={handleSubmit}>
           {error && <div className={styles.error}>{error}</div>}
           
           <div className={styles.inputGroup}>
-            <label className={styles.inputLabel}>Registry Email</label>
+            <label className={styles.inputLabel}>Registry ID (Email)</label>
             <div className={styles.inputContainer}>
               <input 
                 type="email" 
                 className={styles.inputField} 
-                placeholder="name@company.com" 
+                placeholder="identity@xeno.core" 
                 required 
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
               />
-              <Mail className={styles.inputIcon} size={18} />
+              <Mail className={styles.inputIcon} size={18} strokeWidth={1.5} />
             </div>
           </div>
           
@@ -127,7 +127,7 @@ export default function LoginPage() {
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
               />
-              <Lock className={styles.inputIcon} size={18} />
+              <Lock className={styles.inputIcon} size={18} strokeWidth={1.5} />
             </div>
           </div>
 
@@ -136,26 +136,26 @@ export default function LoginPage() {
             className={styles.submitBtn}
             disabled={loading}
           >
-            {loading ? <Loader2 className="animate-spin" size={18} /> : <>Continue to Console <ArrowRight size={18} /></>}
+            {loading ? <Loader2 className="animate-spin" size={18} /> : <>Initialize Session <ArrowRight size={18} strokeWidth={2.5} /></>}
           </button>
         </form>
 
         <div className={styles.divider}>
-          <span>External Auth</span>
+          <span>Identity Gateway</span>
         </div>
 
         <div className={styles.socialGrid}>
           <button className={styles.socialBtn}>
-            <Globe size={18} /> Google
+            <Globe size={18} strokeWidth={1.5} /> Google
           </button>
           <button className={styles.socialBtn}>
-            <Code size={18} /> GitHub
+            <Code size={18} strokeWidth={1.5} /> GitHub
           </button>
         </div>
 
         <div className={styles.footer}>
-          <span>First time here?</span>
-          <Link href="/signup" className={styles.footerLink}>Request access</Link>
+          <span>No node registered?</span>
+          <Link href="/signup" className={styles.footerLink}>Request Access</Link>
         </div>
       </motion.div>
     </div>

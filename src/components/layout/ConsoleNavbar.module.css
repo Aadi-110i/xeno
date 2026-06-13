@@ -1,7 +1,7 @@
 .navbar {
-  height: 64px;
-  background: var(--bg-surface);
-  border-bottom: 1px solid var(--border-subtle);
+  height: 72px;
+  background: var(--bg-deep);
+  border-bottom: 1px solid var(--border-etched);
   position: sticky;
   top: 0;
   z-index: 100;
@@ -19,7 +19,7 @@
 .leftSection {
   display: flex;
   align-items: center;
-  gap: 32px;
+  gap: 40px;
 }
 
 .brand {
@@ -33,48 +33,51 @@
   width: 32px;
   height: 32px;
   background: var(--color-primary);
-  border-radius: 8px;
+  border-radius: 2px;
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
 .logoIcon {
-  color: var(--bg-surface);
+  color: var(--bg-deep);
 }
 
 .brandName {
   font-weight: 800;
   font-size: 18px;
-  letter-spacing: 0.1em;
+  letter-spacing: -0.02em;
   color: var(--color-primary);
 }
 
 .divider {
   width: 1px;
   height: 24px;
-  background: var(--border-subtle);
+  background: var(--border-etched);
 }
 
 .navLinks {
   display: flex;
-  gap: 8px;
+  gap: 4px;
 }
 
 .navItem {
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: 10px;
   padding: 8px 16px;
-  border-radius: 8px;
-  color: var(--color-secondary);
-  font-size: 14px;
+  border-radius: var(--radius-sm);
+  color: var(--color-tertiary);
+  font-size: 13px;
   font-weight: 600;
   background: transparent;
   border: none;
   cursor: pointer;
   transition: var(--transition-fast);
   position: relative;
+  font-family: var(--font-mono);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
 }
 
 .navItem:hover {
@@ -83,23 +86,22 @@
 }
 
 .navItem.active {
-  color: var(--accent-indigo);
+  color: var(--color-primary);
 }
 
 .activeIndicator {
   position: absolute;
-  bottom: -14px;
-  left: 16px;
-  right: 16px;
-  height: 2px;
-  background: var(--accent-indigo);
-  border-radius: 2px 2px 0 0;
+  bottom: -21px;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: var(--accent-chrome);
 }
 
 .rightSection {
   display: flex;
   align-items: center;
-  gap: 24px;
+  gap: 32px;
 }
 
 .statusWrapper {
@@ -110,13 +112,16 @@
   display: flex;
   align-items: center;
   gap: 8px;
-  font-size: 13px;
+  font-family: var(--font-mono);
+  font-size: 10px;
   font-weight: 600;
-  color: var(--color-secondary);
+  color: var(--color-tertiary);
   cursor: pointer;
   padding: 8px 12px;
-  border-radius: 8px;
+  border-radius: var(--radius-sm);
   transition: var(--transition-fast);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
 }
 
 .statusTrigger:hover {
@@ -124,13 +129,14 @@
 }
 
 .dot {
-  width: 8px;
-  height: 8px;
+  width: 6px;
+  height: 6px;
   border-radius: 50%;
 }
 
 .online {
-  background: var(--accent-green);
+  background: var(--accent-chrome);
+  box-shadow: 0 0 8px rgba(255,255,255,0.4);
 }
 
 .offline {
@@ -145,34 +151,35 @@
   position: absolute;
   top: 100%;
   right: 0;
-  margin-top: 8px;
+  margin-top: 12px;
   background: var(--bg-surface);
-  border: 1px solid var(--border-subtle);
-  border-radius: 12px;
-  padding: 16px;
-  width: 200px;
-  box-shadow: var(--shadow-lg);
+  border: 1px solid var(--border-etched);
+  border-radius: var(--radius-sm);
+  padding: 20px;
+  width: 220px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.5);
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 16px;
 }
 
 .statusItem {
   display: flex;
   align-items: center;
-  gap: 10px;
-  font-size: 13px;
+  gap: 12px;
+  font-size: 12px;
 }
 
 .statusItem label {
   font-weight: 500;
-  color: var(--color-secondary);
+  color: var(--color-tertiary);
   flex: 1;
 }
 
 .statusItem span {
   font-weight: 700;
-  font-size: 11px;
+  font-size: 10px;
+  font-family: var(--font-mono);
   text-transform: uppercase;
   color: var(--color-primary);
 }
@@ -182,20 +189,23 @@
   align-items: center;
   gap: 8px;
   padding: 8px 16px;
-  background: var(--bg-surface-hover);
-  border: 1px solid var(--border-subtle);
-  border-radius: 8px;
-  color: var(--color-secondary);
-  font-size: 13px;
+  background: transparent;
+  border: 1px solid var(--border-etched);
+  border-radius: var(--radius-sm);
+  color: var(--color-tertiary);
+  font-family: var(--font-mono);
+  font-size: 10px;
   font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
   cursor: pointer;
   transition: var(--transition-fast);
 }
 
 .logoutBtn:hover {
-  border-color: var(--accent-red);
-  color: var(--accent-red);
-  background: rgba(239, 68, 68, 0.05);
+  border-color: var(--accent-chrome);
+  color: var(--color-primary);
+  background: rgba(255,255,255,0.05);
 }
 
 @media (max-width: 1024px) {
