@@ -1,36 +1,68 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Xeno CRM
 
-## Getting Started
+Xeno is a high-performance customer relationship management and audience orchestration platform built for the 2026 Xeno Engineering Internship Assignment. It focuses on data integrity, intelligent segmentation, and multi-channel campaign execution.
 
-First, run the development server:
+## Core Functionality
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+### 1. Data Ingestion
+The system includes a JSON-based ingestion portal designed for high-velocity data synchronization from external sources (Web, POS, Apps). 
+- Supports batch uploads of customer and order data.
+- Employs transactional logic to ensure data consistency between customer records and purchase history.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### 2. Segment Orchestration
+A flexible audience builder that allows users to define specific customer groups based on behavioral data.
+- Visual Rule Builder: Create segments using structured filters like total spend, purchase frequency, and last activity.
+- AI Natural Language Parser: Integrates Gemini to convert plain-text descriptions (e.g., "customers who spent over $500 in the last month") into executable database queries.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### 3. Campaign Management
+A multi-step workflow for designing and deploying targeted marketing messages.
+- Multi-Channel Support: Capabilities for WhatsApp, SMS, Email, and RCS.
+- Deliverability Simulator: A real-time mobile preview that renders personalized templates, allowing users to verify message formatting before execution.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+### 4. Live Telemetry
+A technical dashboard providing real-time visibility into campaign performance and system health.
+- Revenue Attribution: Tracks ROI through conversion trends linked directly to campaign logs.
+- Delivery Signals: Monitors real-time status updates (sent, delivered, opened, converted) across all communication channels.
 
-## Learn More
+## Technical Stack
 
-To learn more about Next.js, take a look at the following resources:
+- Framework: Next.js (App Router)
+- Language: TypeScript
+- Database: PostgreSQL (via Prisma ORM)
+- Authentication: JWT-based with bcrypt password hashing
+- Styling: Vanilla CSS / CSS Modules
+- Animation: Motion (formerly Framer Motion)
+- Icons: Lucide React
+- AI: Google Gemini (for query parsing and content generation)
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Setup and Installation
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+### Prerequisites
+- Node.js (v18+)
+- A hosted PostgreSQL instance (e.g., Vercel Postgres, Supabase, or Neon)
 
-## Deploy on Vercel
+### Environment Variables
+Create a .env file in the root directory with the following variables:
+- DATABASE_URL: Your PostgreSQL connection string.
+- JWT_SECRET: A secure string for signing authentication tokens.
+- GOOGLE_GENERATIVE_AI_API_KEY: Your Gemini API key.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+### Installation Steps
+1. Install dependencies:
+   npm install
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+2. Initialize the database schema:
+   npx prisma generate
+   npx prisma migrate dev --name init
+
+3. (Optional) Seed the database with sample data:
+   node prisma/seed.js
+
+4. Start the development server:
+   npm run dev
+
+## Deployment on Vercel
+1. Push the code to a GitHub repository.
+2. Connect the repository to Vercel.
+3. Configure the environment variables in the Vercel dashboard.
+4. Vercel will automatically run the build script (prisma generate && next build).
