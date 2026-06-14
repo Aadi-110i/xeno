@@ -30,7 +30,7 @@ export default function IngestPortal({
         {/* JSON Ingestion */}
         <div className="card p-24">
           <div className={styles.sectionHeader}>
-            <Download size={16} className="text-indigo" />
+            <Download size={16} strokeWidth={1} className="text-silver" />
             <h3>JSON Ingestion Portal</h3>
           </div>
 
@@ -62,7 +62,7 @@ export default function IngestPortal({
         {/* Database Management */}
         <div className="card p-24">
           <div className={styles.sectionHeader}>
-            <Database size={16} className="text-indigo" />
+            <Database size={16} strokeWidth={1} className="text-silver" />
             <h3>State Management</h3>
           </div>
 
@@ -81,7 +81,7 @@ export default function IngestPortal({
           {result && (
             <div className={styles.resultBox}>
               <div className={styles.resultHeader}>
-                <CheckCircle2 size={12} className="text-indigo" />
+                <CheckCircle2 size={12} strokeWidth={1} className="text-silver" />
                 <span>Execution Result</span>
               </div>
               <pre className={styles.resultContent}>{result}</pre>

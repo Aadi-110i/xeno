@@ -1,6 +1,6 @@
 'use client';
 
-import { Plus, Trash2, Sparkles, Layers } from 'lucide-react';
+import { Plus, Trash2, Zap, Layers } from 'lucide-react';
 import styles from './SegmentBuilder.module.css';
 
 interface VisualRule {
@@ -88,7 +88,7 @@ export default function SegmentBuilder({
         <div className={styles.premiumCard}>
           <div className={styles.sectionHeader}>
             <div className={styles.headerTitle}>
-              <Layers size={16} className="text-indigo" />
+              <Layers size={16} strokeWidth={1} className="text-silver" />
               <h3>Visual Rule Orchestrator</h3>
             </div>
           </div>
@@ -168,7 +168,7 @@ export default function SegmentBuilder({
         <div className={styles.premiumCard}>
           <div className={styles.sectionHeader}>
             <div className={styles.headerTitle}>
-              <Sparkles size={16} className="text-indigo" />
+              <Zap size={16} strokeWidth={1} className="text-silver" />
               <h3>AI Natural Language Parser</h3>
             </div>
           </div>
@@ -241,10 +241,10 @@ export default function SegmentBuilder({
                 {matchedCustomers.slice(0, 8).map(sc => (
                   <div key={sc.id} className={styles.previewItem}>
                     <span>{sc.firstName} {sc.lastName}</span>
-                    <span className="text-indigo font-mono">${sc.totalSpent.toFixed(0)}</span>
+                    <span className="text-silver font-mono">${sc.totalSpent.toFixed(0)}</span>
                   </div>
                 ))}
-                {matchedCustomers.length > 8 && <div className={styles.moreIndicator}>+ {matchedCustomers.length - 8} more identities</div>}
+                {matchedCustomers.length > 8 && <div className={styles.moreIndicator}>+ {matchedCustomers.length - 8} identities</div>}
               </div>
             )}
           </div>

@@ -136,8 +136,8 @@ export default function CampaignComposer({
             <div className={styles.formContent}>
               <div className={styles.aiCopyBox}>
                 <div className={styles.aiHeader}>
-                  <Sparkles size={14} className="text-indigo" />
-                  <span>AI Copywriter Prompt</span>
+                  <Zap size={14} strokeWidth={1} className="text-silver" />
+                  <span>AI Objective Compiler</span>
                 </div>
                 <div className={styles.aiInputRow}>
                   <input 

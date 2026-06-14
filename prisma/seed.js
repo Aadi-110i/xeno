@@ -1,162 +1,160 @@
-const { PrismaClient } = require('@prisma/client');
-const prisma = new PrismaClient();
-
-const FIRST_NAMES = [
-  'Emma', 'Liam', 'Olivia', 'Noah', 'Ava', 'Oliver', 'Sophia', 'Elijah', 'Isabella', 'James',
-  'Mia', 'Benjamin', 'Charlotte', 'Lucas', 'Amelia', 'Alexander', 'Harper', 'Mason', 'Evelyn', 'Ethan',
-  'Abigail', 'Logan', 'Emily', 'Daniel', 'Elizabeth', 'Michael', 'Sofia', 'William', 'Avery', 'Jackson',
-  'Ella', 'Sebastian', 'Madison', 'Mateo', 'Scarlett', 'Jack', 'Victoria', 'Owen', 'Aria', 'Theodore',
-  'Grace', 'Aiden', 'Chloe', 'Samuel', 'Camila', 'Joseph', 'Penelope', 'John', 'Riley', 'David'
-];
-
-const LAST_NAMES = [
-  'Smith', 'Johnson', 'Williams', 'Brown', 'Jones', 'Garcia', 'Miller', 'Davis', 'Rodriguez', 'Martinez',
-  'Hernandez', 'Lopez', 'Gonzalez', 'Wilson', 'Anderson', 'Thomas', 'Taylor', 'Moore', 'Jackson', 'Martin',
-  'Lee', 'Perez', 'Thompson', 'White', 'Harris', 'Sanchez', 'Clark', 'Ramirez', 'Lewis', 'Robinson',
-  'Walker', 'Young', 'Allen', 'King', 'Wright', 'Scott', 'Torres', 'Nguyen', 'Hill', 'Flores',
-  'Green', 'Adams', 'Nelson', 'Baker', 'Hall', 'Rivera', 'Campbell', 'Mitchell', 'Carter', 'Roberts'
-];
-
-const PRODUCT_CATEGORIES = [
-  { name: 'Classic Leather Sneakers', price: 89.99, category: 'Footwear' },
-  { name: 'Minimalist Cotton T-Shirt', price: 24.99, category: 'Apparel' },
-  { name: 'Slim Fit Denim Jeans', price: 59.99, category: 'Apparel' },
-  { name: 'Waterproof Sports Watch', price: 129.99, category: 'Accessories' },
-  { name: 'Wireless Noise-Cancelling Headphones', price: 199.99, category: 'Electronics' },
-  { name: 'Leather Bifold Wallet', price: 45.00, category: 'Accessories' },
-  { name: 'Stainless Steel Water Bottle', price: 30.00, category: 'Lifestyle' },
-  { name: 'Ergonomic Canvas Backpack', price: 75.00, category: 'Accessories' },
-  { name: 'Merino Wool Sweater', price: 85.00, category: 'Apparel' },
-  { name: 'Polarized Sunglasses', price: 110.00, category: 'Accessories' }
-];
-
-function getRandomElement(arr) {
-  return arr[Math.floor(Math.random() * arr.length)];
-}
-
-function getRandomDate(daysAgoStart, daysAgoEnd) {
-  const date = new Date();
-  const daysAgo = daysAgoStart + Math.random() * (daysAgoEnd - daysAgoStart);
-  date.setDate(date.getDate() - daysAgo);
-  return date;
-}
+const { PrismaClient } = require('@prisma/client')
+const prisma = new PrismaClient()
 
 async function main() {
-  console.log('Clearing existing database...');
-  await prisma.order.deleteMany({});
-  await prisma.communicationLog.deleteMany({});
-  await prisma.campaign.deleteMany({});
-  await prisma.segment.deleteMany({});
-  await prisma.customer.deleteMany({});
+  console.log('Seeding fancy telemetry data...')
 
-  console.log('Seeding customers...');
-  const customers = [];
-  const emailsUsed = new Set();
-  const phonesUsed = new Set();
+  // Clean existing data
+  await prisma.order.deleteMany()
+  await prisma.communicationLog.deleteMany()
+  await prisma.campaign.deleteMany()
+  await prisma.segment.deleteMany()
+  await prisma.customer.deleteMany()
 
-  for (let i = 0; i < 120; i++) {
-    const firstName = getRandomElement(FIRST_NAMES);
-    const lastName = getRandomElement(LAST_NAMES);
-    let email = `${firstName.toLowerCase()}.${lastName.toLowerCase()}@example.com`;
-    let count = 1;
-    while (emailsUsed.has(email)) {
-      email = `${firstName.toLowerCase()}.${lastName.toLowerCase()}${count}@example.com`;
-      count++;
-    }
-    emailsUsed.add(email);
+  // 1. Create Customers
+  const customerData = [
+    { firstName: 'Maximilian', lastName: 'Vanderbilt', email: 'max.v@luxury-corp.com', phone: '+15559871111', totalSpent: 2050.00, customFields: JSON.stringify({ tier: 'platinum', city: 'New York' }) },
+    { firstName: 'Lucas', lastName: 'Anderson', email: 'lucas.anderson@example.com', phone: '+19086156031', totalSpent: 520.00, customFields: JSON.stringify({ tier: 'gold', city: 'San Francisco' }) },
+    { firstName: 'Mia', lastName: 'Martinez', email: 'mia.martinez@example.com', phone: '+18202314831', totalSpent: 120.50, customFields: JSON.stringify({ tier: 'silver', city: 'Miami' }) },
+    { firstName: 'Avery', lastName: 'Davis', email: 'avery.davis@example.com', phone: '+15768117740', totalSpent: 3400.00, customFields: JSON.stringify({ tier: 'platinum', city: 'Los Angeles' }) },
+    { firstName: 'Benjamin', lastName: 'Martin', email: 'benjamin.martin@example.com', phone: '+15155527227', totalSpent: 890.00, customFields: JSON.stringify({ tier: 'gold', city: 'Chicago' }) },
+    { firstName: 'Michael', lastName: 'Garcia', email: 'michael.garcia@example.com', phone: '+13333046325', totalSpent: 210.00, customFields: JSON.stringify({ tier: 'silver', city: 'Austin' }) },
+    { firstName: 'Abigail', lastName: 'Jackson', email: 'abigail.jackson@example.com', phone: '+13287537506', totalSpent: 1550.00, customFields: JSON.stringify({ tier: 'platinum', city: 'Seattle' }) },
+    { firstName: 'Emma', lastName: 'Hernandez', email: 'emma.hernandez@example.com', phone: '+19592854895', totalSpent: 45.00, customFields: JSON.stringify({ tier: 'bronze', city: 'Denver' }) },
+  ]
 
-    let phone = `+1${Math.floor(200 + Math.random() * 800)}${Math.floor(200 + Math.random() * 800)}${Math.floor(1000 + Math.random() * 9000)}`;
-    while (phonesUsed.has(phone)) {
-      phone = `+1${Math.floor(200 + Math.random() * 800)}${Math.floor(200 + Math.random() * 800)}${Math.floor(1000 + Math.random() * 9000)}`;
-    }
-    phonesUsed.add(phone);
-
-    const customFields = JSON.stringify({
-      age: Math.floor(18 + Math.random() * 50),
-      preferredCategory: getRandomElement(['Apparel', 'Footwear', 'Accessories', 'Electronics', 'Lifestyle']),
-      newsletterSubscribed: Math.random() > 0.3
-    });
-
-    const customer = await prisma.customer.create({
-      data: {
-        firstName,
-        lastName,
-        email,
-        phone,
-        customFields,
-        totalSpent: 0.0 // updated after orders are added
-      }
-    });
-    customers.push(customer);
+  const customers = []
+  for (const c of customerData) {
+    customers.push(await prisma.customer.create({ data: c }))
   }
 
-  console.log(`Successfully seeded ${customers.length} customers.`);
+  // 2. Create Segments
+  const segments = []
+  segments.push(await prisma.segment.create({
+    data: { name: 'High Spend Cohort', description: 'Lifetime value > $1000', definition: JSON.stringify({ field: 'totalSpent', operator: '>', value: 1000 }) }
+  }))
+  segments.push(await prisma.segment.create({
+    data: { name: 'Gold Tier Engagement', description: 'Active gold tier members', definition: JSON.stringify({ field: 'customFields.tier', operator: '==', value: 'gold' }) }
+  }))
+  segments.push(await prisma.segment.create({
+    data: { name: 'Dormant Bronze', description: 'Low spenders needing revival', definition: JSON.stringify({ field: 'customFields.tier', operator: '==', value: 'bronze' }) }
+  }))
 
-  console.log('Seeding historical orders...');
-  const ordersCount = 250;
-  const orders = [];
+  // 3. Create Campaigns (Orchestrations)
+  const campaigns = []
+  campaigns.push(await prisma.campaign.create({
+    data: { name: 'Summer Luxury Drop', description: 'Exclusive early access', channel: 'whatsapp', messageTemplate: 'Hi {{firstName}}, exclusive early access to our new drop is here.', segmentId: segments[0].id, status: 'completed' }
+  }))
+  campaigns.push(await prisma.campaign.create({
+    data: { name: 'Gold Member Upgrades', description: 'Free shipping promo', channel: 'email', messageTemplate: 'Enjoy free shipping on your next order, {{firstName}}.', segmentId: segments[1].id, status: 'running' }
+  }))
+  campaigns.push(await prisma.campaign.create({
+    data: { name: 'We Miss You 10%', description: 'Winback discount', channel: 'sms', messageTemplate: 'Come back {{firstName}} for 10% off your next purchase!', segmentId: segments[2].id, status: 'running' }
+  }))
+  campaigns.push(await prisma.campaign.create({
+    data: { name: 'VIP Gala Invite', description: 'In-person event', channel: 'whatsapp', messageTemplate: 'You are invited to our VIP Gala in {{city}}.', segmentId: segments[0].id, status: 'scheduled' }
+  }))
 
-  for (let i = 0; i < ordersCount; i++) {
-    const customer = getRandomElement(customers);
-    
-    // Create random list of items for this order (1-3 items)
-    const itemsCount = Math.floor(Math.random() * 3) + 1;
-    const items = [];
-    let orderAmount = 0;
-    
-    for (let j = 0; j < itemsCount; j++) {
-      const prod = getRandomElement(PRODUCT_CATEGORIES);
-      const qty = Math.floor(Math.random() * 2) + 1;
-      items.push({
-        name: prod.name,
-        price: prod.price,
-        quantity: qty,
-        category: prod.category
-      });
-      orderAmount += prod.price * qty;
-    }
+  // 4. Create Communication Logs & Attributed Orders
+  const baseDate = new Date()
+  
+  // High Spenders Campaign (Summer Luxury Drop) -> High conversion!
+  for (const customer of [customers[0], customers[3], customers[6]]) {
+    const log = await prisma.communicationLog.create({
+      data: {
+        campaignId: campaigns[0].id,
+        customerId: customer.id,
+        channel: 'whatsapp',
+        recipient: customer.phone,
+        message: `Hi ${customer.firstName}, exclusive early access to our new drop is here.`,
+        status: 'converted',
+        sentAt: new Date(baseDate.getTime() - 86400000 * 2), // 2 days ago
+        deliveredAt: new Date(baseDate.getTime() - 86400000 * 2 + 5000),
+        openedAt: new Date(baseDate.getTime() - 86400000 * 2 + 3600000),
+        clickedAt: new Date(baseDate.getTime() - 86400000 * 2 + 3700000),
+        convertedAt: new Date(baseDate.getTime() - 86400000 * 1), // 1 day ago
+      }
+    })
 
-    // Round amount
-    orderAmount = Math.round(orderAmount * 100) / 100;
-
-    const purchaseDate = getRandomDate(1, 90); // past 90 days
-
-    const order = await prisma.order.create({
+    // Attributed Order
+    await prisma.order.create({
       data: {
         customerId: customer.id,
-        amount: orderAmount,
-        items: JSON.stringify(items),
-        purchaseDate
+        amount: Math.floor(Math.random() * 500) + 500, // $500 - $1000
+        items: JSON.stringify([{ name: 'Luxury Item', price: 750 }]),
+        purchaseDate: new Date(baseDate.getTime() - 86400000 * 1),
+        commLogId: log.id // This ties the revenue to the campaign!
       }
-    });
-    orders.push(order);
+    })
   }
 
-  console.log(`Successfully seeded ${orders.length} orders.`);
+  // Gold Member Campaign -> Some clicks, some conversions
+  for (const customer of [customers[1], customers[4]]) {
+    const isConverted = customer.firstName === 'Benjamin' // Make Benjamin convert
+    const log = await prisma.communicationLog.create({
+      data: {
+        campaignId: campaigns[1].id,
+        customerId: customer.id,
+        channel: 'email',
+        recipient: customer.email,
+        message: `Enjoy free shipping on your next order, ${customer.firstName}.`,
+        status: isConverted ? 'converted' : 'opened',
+        sentAt: new Date(baseDate.getTime() - 43200000), // 12 hours ago
+        deliveredAt: new Date(baseDate.getTime() - 43200000 + 2000),
+        openedAt: new Date(baseDate.getTime() - 43200000 + 800000),
+        clickedAt: isConverted ? new Date(baseDate.getTime() - 43200000 + 850000) : null,
+        convertedAt: isConverted ? new Date(baseDate.getTime() - 3600000) : null, // 1 hr ago
+      }
+    })
 
-  console.log('Recalculating customer total spent...');
-  for (const customer of customers) {
-    const customerOrders = await prisma.order.findMany({
-      where: { customerId: customer.id }
-    });
-    
-    const totalSpent = customerOrders.reduce((sum, order) => sum + order.amount, 0);
-    const roundedSpent = Math.round(totalSpent * 100) / 100;
-
-    await prisma.customer.update({
-      where: { id: customer.id },
-      data: { totalSpent: roundedSpent }
-    });
+    if (isConverted) {
+      await prisma.order.create({
+        data: {
+          customerId: customer.id,
+          amount: 250.00,
+          items: JSON.stringify([{ name: 'Premium Accessory', price: 250 }]),
+          purchaseDate: new Date(baseDate.getTime() - 3600000),
+          commLogId: log.id
+        }
+      })
+    }
   }
 
-  console.log('Database seeding finished successfully!');
+  // Bronze Campaign -> Mostly delivered/ignored
+  for (const customer of [customers[2], customers[5], customers[7]]) {
+    await prisma.communicationLog.create({
+      data: {
+        campaignId: campaigns[2].id,
+        customerId: customer.id,
+        channel: 'sms',
+        recipient: customer.phone,
+        message: `Come back ${customer.firstName} for 10% off your next purchase!`,
+        status: 'delivered',
+        sentAt: new Date(baseDate.getTime() - 7200000), // 2 hours ago
+        deliveredAt: new Date(baseDate.getTime() - 7200000 + 1000),
+      }
+    })
+  }
+
+  // Create some regular non-attributed orders just to flesh out history
+  await prisma.order.create({
+    data: {
+      customerId: customers[0].id,
+      amount: 150.00,
+      items: JSON.stringify([{ name: 'Basic Item', price: 150 }]),
+      purchaseDate: new Date(baseDate.getTime() - 86400000 * 10),
+    }
+  })
+
+  console.log('Fancy telemetry data seeded successfully! The ROI and metrics should look amazing now.')
 }
 
 main()
-  .catch((e) => {
-    console.error(e);
-    process.exit(1);
+  .then(async () => {
+    await prisma.$disconnect()
   })
-  .finally(async () => {
-    await prisma.$disconnect();
-  });
+  .catch(async (e) => {
+    console.error(e)
+    await prisma.$disconnect()
+    process.exit(1)
+  })

@@ -390,17 +390,6 @@ export default function LandingPage({
         </div>
       </section>
 
-      <footer className={styles.footer}>
-        <div className="container-max">
-          <div className={styles.footerContent}>
-            <span className="text-mono">© 2026 XENO_CORE</span>
-            <div className={styles.footerLinks}>
-              <button className={styles.footerLink} onClick={onEnterConsole}>Console</button>
-              <a href="#" className={styles.footerLink}>API_Status</a>
-            </div>
-          </div>
-        </div>
-      </footer>
     </div>
   );
 }

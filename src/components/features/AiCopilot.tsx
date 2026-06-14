@@ -1,6 +1,6 @@
 'use client';
 
-import { Sparkles, Send, Cpu, MessageSquare, Target, Layers } from 'lucide-react';
+import { Zap, Send, Cpu, MessageSquare, Target, Layers } from 'lucide-react';
 import styles from './AiCopilot.module.css';
 
 interface ChatMessage {
@@ -38,7 +38,7 @@ export default function AiCopilot({
           {chatHistory.map((chat, idx) => (
             <div key={idx} className={`${styles.bubbleWrapper} ${chat.role === 'user' ? styles.userWrapper : styles.modelWrapper}`}>
               <div className={styles.avatar}>
-                {chat.role === 'user' ? <MessageSquare size={12} /> : <Sparkles size={12} />}
+                {chat.role === 'user' ? <MessageSquare size={14} strokeWidth={1.5} /> : <Zap size={14} strokeWidth={1.5} />}
               </div>
               
               <div className={styles.bubble}>
@@ -66,10 +66,10 @@ export default function AiCopilot({
           ))}
           {sending && (
             <div className={`${styles.bubbleWrapper} ${styles.modelWrapper}`}>
-              <div className={styles.avatar}><Cpu size={14} className={styles.spin} /></div>
+              <div className={styles.avatar}><Cpu size={16} strokeWidth={1.5} className={styles.spin} /></div>
               <div className={styles.bubble}>
                 <div className={styles.loadingBubble}>
-                  Gemini is orchestrating a response...
+                  AI Core is orchestrating a response...
                 </div>
               </div>
             </div>

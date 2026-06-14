@@ -672,7 +672,7 @@ export default function DashboardPage() {
   if (loadingUser) {
     return (
       <div className="h-screen w-screen flex items-center justify-center bg-black">
-        <div className="text-indigo animate-pulse">Initializing Xeno Console...</div>
+        <div className="text-silver animate-pulse">Initializing Xeno Console...</div>
       </div>
     );
   }

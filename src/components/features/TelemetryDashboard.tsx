@@ -166,7 +166,7 @@ export default function TelemetryDashboard({
                 </div>
                 <div className={styles.subStat}>
                   <label>REVENUE</label>
-                  <span style={{ color: '#818cf8' }}>${runningCampaignStats.revenue.toFixed(0)}</span>
+                  <span className="text-silver">${runningCampaignStats.revenue.toFixed(0)}</span>
                 </div>
               </div>
             </motion.div>
@@ -205,9 +205,9 @@ export default function TelemetryDashboard({
                       <div className={styles.logStats}>
                         <div className={styles.logStatItem}>
                           <label>REVENUE</label>
-                          <span style={{ color: '#818cf8' }}>${camp.stats.revenue.toFixed(0)}</span>
+                          <span className="text-silver">${camp.stats.revenue.toFixed(0)}</span>
                         </div>
-                        <ArrowUpRight size={14} style={{ color: 'rgba(255,255,255,0.3)' }} />
+                        <ArrowUpRight size={14} strokeWidth={1} style={{ color: 'rgba(255,255,255,0.3)' }} />
                       </div>
                     )}
                   </motion.div>
@@ -222,7 +222,7 @@ export default function TelemetryDashboard({
           <div className={styles.terminal}>
             <div className={styles.terminalHeader}>
               <div className={styles.terminalTitle}>
-                <Cpu size={14} />
+                <Cpu size={14} strokeWidth={1} />
                 <span>delivery_signals_node.sh</span>
               </div>
               <RefreshCw 

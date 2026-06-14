@@ -164,7 +164,7 @@ export function CustomerModal({
                 </div>
                 <div className={styles.summaryCard}>
                   <label className={styles.cardLabel}>Lifetime Attribution</label>
-                  <div className={`${styles.cardValue} text-indigo`}>${customer.totalSpent.toFixed(2)}</div>
+                  <div className={`${styles.cardValue} text-silver`}>${customer.totalSpent.toFixed(2)}</div>
                   <div className={styles.cardSubValue}>Joined {new Date(customer.createdAt).toLocaleDateString()}</div>
                 </div>
               </div>
@@ -186,7 +186,7 @@ export function CustomerModal({
                         <tr key={ord.id}>
                           <td>#{ord.id.slice(-6).toUpperCase()}</td>
                           <td>{new Date(ord.purchaseDate).toLocaleDateString()}</td>
-                          <td className="text-indigo font-mono">${ord.amount.toFixed(2)}</td>
+                          <td className="text-silver font-mono">${ord.amount.toFixed(2)}</td>
                         </tr>
                       ))}
                       {(!history?.orders || history.orders.length === 0) && (
@@ -218,7 +218,7 @@ export function CustomerModal({
                           <td><span className={styles.statusBadgeSmall}>{log.status}</span></td>
                           <td className={styles.timeLogs}>
                             {log.sentAt && <div>TX: {new Date(log.sentAt).toLocaleTimeString()}</div>}
-                            {log.convertedAt && <div className="text-indigo">CV: {new Date(log.convertedAt).toLocaleTimeString()}</div>}
+                            {log.convertedAt && <div className="text-silver">CV: {new Date(log.convertedAt).toLocaleTimeString()}</div>}
                           </td>
                         </tr>
                       ))}

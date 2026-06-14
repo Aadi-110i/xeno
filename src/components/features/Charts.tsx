@@ -55,7 +55,7 @@ export function CampaignChart({ campaigns }: { campaigns: Campaign[] }) {
     <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
         <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-          <TrendingUp size={14} className="text-indigo" />
+          <TrendingUp size={14} strokeWidth={1} className="text-silver" />
           <span style={{ fontSize: '11px', fontWeight: 600, color: 'var(--color-secondary)', textTransform: 'uppercase', letterSpacing: '0.05em' }}>
             Revenue Attribution Trend
           </span>
@@ -125,7 +125,7 @@ export function ConversionsBarChart({ campaigns }: { campaigns: Campaign[] }) {
     <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
         <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-          <Activity size={14} className="text-indigo" />
+          <Activity size={14} strokeWidth={1} className="text-silver" />
           <span style={{ fontSize: '11px', fontWeight: 600, color: 'var(--color-secondary)', textTransform: 'uppercase', letterSpacing: '0.05em' }}>
             Campaign Conversions
           </span>

@@ -122,7 +122,7 @@ export default function Page() {
   if (loadingUser) {
     return (
       <div className="h-screen w-screen flex items-center justify-center bg-black">
-        <div className="text-indigo animate-pulse">Initializing Xeno...</div>
+        <div className="text-silver animate-pulse">Initializing Xeno...</div>
       </div>
     );
   }

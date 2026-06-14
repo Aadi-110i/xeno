@@ -8,7 +8,7 @@
   /* Color Palette - Cold Metals & Charcoal */
   --bg-deep: #09090b;          /* zinc-950 */
   --bg-main: #0c0c0e;          /* deep charcoal */
-  --bg-surface: #18181b;       /* zinc-900 */
+  --bg-surface: #1c1c20;       /* zinc-900 (slightly lightened for contrast) */
   --bg-surface-hover: #27272a; /* zinc-800 */
   
   --border-etched: #27272a;    /* zinc-800 (etched hairline) */

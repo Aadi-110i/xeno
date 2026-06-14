@@ -1,13 +1,13 @@
 .composerGrid {
   display: grid;
   grid-template-columns: 1.2fr 0.8fr;
-  gap: 24px;
+  gap: 48px; /* Increased gap */
 }
 
 .wizardSteps {
   display: flex;
-  background: var(--bg-surface-hover);
-  border-bottom: 1px solid var(--border-subtle);
+  background: var(--bg-deep);
+  border-bottom: 1px solid var(--border-etched);
 }
 
 .wizardStep {
@@ -15,11 +15,15 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 10px;
-  padding: 16px;
-  font-size: 13px;
-  font-weight: 600;
-  color: var(--color-tertiary);
+  gap: 12px;
+  padding: 20px;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--color-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  transition: var(--transition-fast);
 }
 
 .activeStep {
@@ -27,21 +31,21 @@
 }
 
 .stepNum {
-  width: 20px;
-  height: 20px;
-  border-radius: 4px;
-  border: 1px solid var(--border-subtle);
+  width: 24px;
+  height: 24px;
+  border-radius: 2px;
+  border: 1px solid var(--border-etched);
   display: flex;
   align-items: center;
   justify-content: center;
   font-size: 10px;
-  background: var(--bg-deep);
+  background: transparent;
 }
 
 .wizardStep.activeStep .stepNum {
-  background: var(--accent-indigo);
-  border-color: var(--accent-indigo);
-  color: white;
+  background: var(--accent-chrome);
+  border-color: var(--accent-chrome);
+  color: var(--bg-deep);
 }
 
 .chevron {
@@ -49,141 +53,154 @@
 }
 
 .wizardForm {
-  padding: 32px;
+  padding: 40px;
 }
 
 .formContent {
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  gap: 32px;
 }
 
 .formGroup {
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: 12px;
 }
 
 .formGroup label {
-  font-size: 11px;
-  font-weight: 600;
-  color: var(--color-tertiary);
+  font-family: var(--font-mono);
+  font-size: 10px;
+  font-weight: 700;
+  color: var(--color-muted);
   text-transform: uppercase;
-  letter-spacing: 0.05em;
+  letter-spacing: 0.1em;
 }
 
 .input, .select {
-  background: var(--bg-surface-hover);
-  border: 1px solid var(--border-subtle);
-  border-radius: 6px;
-  padding: 8px 12px;
+  background: var(--bg-deep);
+  border: 1px solid var(--border-etched);
+  border-radius: var(--radius-sm);
+  padding: 12px 16px;
   color: var(--color-primary);
   font-size: 14px;
   outline: none;
-  transition: var(--transition-fast);
+  transition: var(--transition-base);
+  font-family: var(--font-mono);
 }
 
 .input:focus, .select:focus {
-  border-color: var(--accent-indigo);
+  border-color: var(--border-silver);
 }
 
 .channelGrid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  gap: 12px;
+  gap: 16px;
 }
 
 .channelBtn {
   display: flex;
   align-items: center;
-  gap: 10px;
-  padding: 12px;
-  background: var(--bg-surface-hover);
-  border: 1px solid var(--border-subtle);
-  border-radius: 6px;
-  color: var(--color-secondary);
+  gap: 12px;
+  padding: 16px;
+  background: var(--bg-deep);
+  border: 1px solid var(--border-etched);
+  border-radius: var(--radius-sm);
+  color: var(--color-tertiary);
   cursor: pointer;
   transition: var(--transition-fast);
+  font-family: var(--font-mono);
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
 }
 
 .channelBtn:hover {
-  border-color: var(--border-muted);
+  border-color: var(--border-silver);
   color: var(--color-primary);
 }
 
 .activeChannel {
-  background: rgba(99, 102, 241, 0.05);
-  border-color: var(--accent-indigo);
-  color: var(--accent-indigo);
+  background: var(--accent-chrome);
+  border-color: var(--accent-chrome);
+  color: var(--bg-deep);
 }
 
 .aiCopyBox {
-  background: var(--bg-surface-hover);
-  border: 1px solid var(--border-subtle);
-  border-radius: 8px;
-  padding: 16px;
+  background: #060608;
+  border: 1px solid var(--border-etched);
+  border-radius: var(--radius-sm);
+  padding: 24px;
 }
 
 .aiHeader {
   display: flex;
   align-items: center;
-  gap: 8px;
-  font-size: 11px;
-  font-weight: 600;
-  color: var(--color-tertiary);
-  margin-bottom: 12px;
+  gap: 12px;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  font-weight: 700;
+  color: var(--accent-silver);
+  margin-bottom: 16px;
   text-transform: uppercase;
-  letter-spacing: 0.05em;
+  letter-spacing: 0.1em;
 }
 
 .aiInputRow {
   display: flex;
-  gap: 8px;
+  gap: 12px;
 }
 
 .templateArea {
-  height: 140px;
-  background: var(--bg-surface-hover);
-  border: 1px solid var(--border-subtle);
-  border-radius: 6px;
-  padding: 12px;
+  height: 180px;
+  background: var(--bg-deep);
+  border: 1px solid var(--border-etched);
+  border-radius: var(--radius-sm);
+  padding: 16px;
   color: var(--color-primary);
   font-size: 14px;
   outline: none;
   resize: vertical;
-  line-height: 1.6;
+  line-height: 1.7;
+  font-family: var(--font-mono);
 }
 
 .varsHint {
-  font-size: 10px;
+  font-family: var(--font-mono);
+  font-size: 9px;
   color: var(--color-muted);
+  margin-top: 12px;
+  text-transform: uppercase;
 }
 
 .btnRow {
   display: flex;
-  gap: 12px;
+  gap: 16px;
+  margin-top: 24px;
 }
 
 .reviewCard {
-  background: var(--bg-surface-hover);
-  border: 1px solid var(--border-subtle);
-  padding: 24px;
-  border-radius: 8px;
+  background: #060608;
+  border: 1px solid var(--border-etched);
+  padding: 32px;
+  border-radius: var(--radius-sm);
 }
 
 .reviewTitle {
-  font-size: 13px;
-  font-weight: 600;
-  margin-bottom: 20px;
-  color: var(--color-secondary);
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 700;
+  margin-bottom: 24px;
+  color: var(--color-primary);
   text-transform: uppercase;
-  letter-spacing: 0.05em;
+  letter-spacing: 0.1em;
 }
 
 .reviewGrid {
   display: flex;
   flex-direction: column;
-  gap: 16px;
+  gap: 20px;
 }
 
 .reviewItem {
@@ -194,16 +211,21 @@
 }
 
 .reviewItem label {
+  font-family: var(--font-mono);
+  font-size: 10px;
   color: var(--color-muted);
+  text-transform: uppercase;
 }
 
 .reviewItem span {
   font-weight: 600;
+  color: var(--color-primary);
 }
 
 .channelLabel {
   text-transform: uppercase;
-  color: var(--accent-indigo);
+  color: var(--accent-silver);
+  font-family: var(--font-mono);
 }
 
 /* Simulator Styles */
@@ -211,40 +233,42 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 20px;
+  gap: 32px;
 }
 
 .simulatorTitle {
   display: flex;
   align-items: center;
-  gap: 8px;
-  font-size: 11px;
+  gap: 12px;
+  font-family: var(--font-mono);
+  font-size: 10px;
   text-transform: uppercase;
-  letter-spacing: 0.1em;
+  letter-spacing: 0.15em;
   color: var(--color-muted);
+  font-weight: 700;
 }
 
 .phoneFrame {
-  width: 280px;
-  height: 560px;
+  width: 300px;
+  height: 600px;
   background: var(--bg-surface);
-  border: 6px solid var(--border-subtle);
-  border-radius: 32px;
+  border: 1px solid var(--border-etched);
+  border-radius: 40px;
   position: relative;
   overflow: hidden;
-  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+  box-shadow: var(--shadow-inset), 0 30px 60px rgba(0,0,0,0.5);
 }
 
 .phoneNotch {
-  width: 100px;
-  height: 18px;
-  background: #18181b;
+  width: 120px;
+  height: 24px;
+  background: #000;
   position: absolute;
   top: 0;
   left: 50%;
   transform: translateX(-50%);
-  border-bottom-left-radius: 10px;
-  border-bottom-right-radius: 10px;
+  border-bottom-left-radius: 12px;
+  border-bottom-right-radius: 12px;
   z-index: 20;
 }
 
@@ -252,76 +276,93 @@
   height: 100%;
   display: flex;
   flex-direction: column;
-  background: var(--bg-main);
+  background: #060608;
 }
 
 .appHeader {
-  background: var(--bg-surface);
-  padding: 24px 16px 12px;
+  background: #0c0c0e;
+  padding: 32px 20px 16px;
   display: flex;
   align-items: center;
   gap: 12px;
-  border-bottom: 1px solid var(--border-subtle);
+  border-bottom: 1px solid var(--border-etched);
 }
 
 .avatar {
-  width: 32px;
-  height: 32px;
-  background: var(--accent-indigo);
+  width: 36px;
+  height: 36px;
+  background: var(--accent-chrome);
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-weight: 700;
-  color: white;
-  font-size: 12px;
+  font-weight: 800;
+  color: var(--bg-deep);
+  font-size: 13px;
 }
 
 .appName {
-  font-size: 13px;
-  font-weight: 600;
+  font-size: 14px;
+  font-weight: 700;
   color: var(--color-primary);
+  letter-spacing: -0.01em;
 }
 
 .appStatus {
+  font-family: var(--font-mono);
   font-size: 9px;
-  color: var(--accent-indigo-light);
+  color: var(--accent-silver);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
 }
 
 .chatArea {
   flex: 1;
-  padding: 16px;
+  padding: 20px;
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 16px;
 }
 
 .systemBubble {
   align-self: center;
-  background: var(--bg-surface);
-  padding: 8px 12px;
-  border-radius: 6px;
-  font-size: 10px;
+  background: rgba(255,255,255,0.03);
+  padding: 10px 16px;
+  border-radius: 2px;
+  font-family: var(--font-mono);
+  font-size: 9px;
   color: var(--color-muted);
   text-align: center;
-  max-width: 80%;
+  max-width: 85%;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
 }
 
 .outgoingBubble {
   align-self: flex-end;
-  background: var(--accent-indigo);
-  padding: 10px 14px;
-  border-radius: 12px 12px 2px 12px;
-  font-size: 12px;
-  color: white;
-  max-width: 85%;
-  line-height: 1.5;
+  background: var(--bg-surface);
+  border: 1px solid var(--border-etched);
+  padding: 14px 18px;
+  border-radius: 4px 4px 0 4px;
+  font-size: 12.5px;
+  color: var(--color-primary);
+  max-width: 90%;
+  line-height: 1.6;
   position: relative;
+  box-shadow: var(--shadow-inset);
 }
 
 .bubbleTime {
-  font-size: 9px;
-  opacity: 0.7;
+  font-family: var(--font-mono);
+  font-size: 8px;
+  opacity: 0.4;
   text-align: right;
-  margin-top: 4px;
+  margin-top: 8px;
+}
+
+@media (max-width: 1024px) {
+  .composerGrid {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
 }
