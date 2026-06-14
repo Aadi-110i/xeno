@@ -571,8 +571,7 @@ export default function DashboardPage() {
 
   const handleRunCampaign = async (id: string) => {
     if (!channelOnline) {
-      alert('Cannot launch campaign. The Channel Service is offline.');
-      return;
+      console.warn('Channel Service offline. Backend fallback simulator will be used.');
     }
     addTelemetry(`[Dispatch] Initiating staggered campaign dispatch...`);
     try {
