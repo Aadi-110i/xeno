@@ -207,3 +207,20 @@ p {
 .p-40 { padding: 40px; }
 .w-full { width: 100%; }
 
+/* Native select / option styling to match dark theme */
+select, select option {
+  background: var(--bg-deep);
+  color: var(--color-primary);
+  font-family: var(--font-mono);
+}
+
+/* Improve dropdown contrast on focus/active states */
+select:focus, select:active {
+  border-color: var(--border-silver);
+  background: rgba(255,255,255,0.02);
+  outline: none;
+}
+
+/* Hide default IE/Edge dropdown caret color mismatch */
+select::-ms-expand { color: var(--color-primary); }
+
