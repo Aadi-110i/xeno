@@ -71,19 +71,19 @@ export function CampaignChart({ campaigns }: { campaigns: Campaign[] }) {
           <line x1={padding} y1={height - padding} x2={width - padding} y2={height - padding} stroke="var(--border-subtle)" />
           
           {areaD && <path d={areaD} fill="url(#chartGrad)" opacity="0.05" />}
-          {pathD && <path d={pathD} fill="none" stroke="var(--accent-indigo)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />}
+          {pathD && <path d={pathD} fill="none" stroke="#ffffff" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />}
           
           {points.map((p, idx) => (
             <g key={idx}>
-              <circle cx={p.x} cy={p.y} r="3" fill="var(--accent-indigo)" stroke="var(--bg-surface)" strokeWidth="1.5" />
+              <circle cx={p.x} cy={p.y} r="3" fill="#ffffff" stroke="var(--bg-surface)" strokeWidth="1.5" />
               <title>{p.label}: ${p.val}</title>
             </g>
           ))}
           
           <defs>
             <linearGradient id="chartGrad" x1="0" y1="0" x2="0" y2="1">
-              <stop offset="0%" stopColor="var(--accent-indigo)" />
-              <stop offset="100%" stopColor="var(--accent-indigo)" stopOpacity="0" />
+              <stop offset="0%" stopColor="#ffffff" />
+              <stop offset="100%" stopColor="#ffffff" stopOpacity="0" />
             </linearGradient>
           </defs>
         </svg>
@@ -153,7 +153,7 @@ export function ConversionsBarChart({ campaigns }: { campaigns: Campaign[] }) {
                   width={barWidth} 
                   height={barHeight} 
                   rx="2" 
-                  fill="var(--accent-indigo)" 
+                  fill="#ffffff" 
                   opacity="0.8"
                 />
                 <text 
